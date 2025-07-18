@@ -202,7 +202,7 @@ python main.py
 ## License
 
 - AIML files: GNU General Public License (see comments in `ai.aiml`)
-- Python code: [Specify your license here]
+- Python code: [MIT](LICENSE)
 
 ---
 
