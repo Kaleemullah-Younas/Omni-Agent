@@ -66,8 +66,7 @@ ZToday/
 ├── names_to_train.csv       # Name-gender training data
 ├── Relations_set.csv        # Relationship types
 ├── esp_firmware.ino         # ESP32 firmware for hardware integration
-├── HARDWARE_SETUP_GUIDE.md  # Hardware setup instructions
-└── OMNI AGENT.zip           # (Archive, possibly backup or distribution)
+└── HARDWARE_SETUP_GUIDE.md  # Hardware setup instructions
 ```
 
 ---
