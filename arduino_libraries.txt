@@ -1,0 +1,58 @@
+Required Arduino Libraries for ESP32 OMNI Hardware Integration:
+
+1. WiFi - ESP32 Built-in WiFi library
+2. HTTPClient - For HTTP communication with Flask server  
+3. ArduinoJson - For JSON parsing and creation
+4. Wire - I2C communication library
+5. Adafruit BME280 Library - For BME280 sensor
+6. FastLED - For RGB LED control
+7. mbedtls - Built-in ESP32 library for base64 encoding/decoding
+
+Installation Instructions:
+1. Open Arduino IDE
+2. Go to Tools -> Manage Libraries
+3. Search and install each library:
+   - Search "ArduinoJson" by Benoit Blanchon -> Install
+   - Search "Adafruit BME280" by Adafruit -> Install (also install dependencies)
+   - Search "FastLED" by Daniel Garcia -> Install  
+   
+Note: mbedtls (for base64) is built into ESP32 Arduino core, no separate installation needed.
+
+Additional Board Setup:
+1. Install ESP32 board package:
+   - File -> Preferences -> Additional Board Manager URLs
+   - Add: https://espressif.github.io/arduino-esp32/package_esp32_index.json
+   - Tools -> Board -> Board Manager -> Search "ESP32" -> Install
+
+2. Select Board: 
+   - Tools -> Board -> ESP32 Arduino -> ESP32S3 Dev Module
+
+3. Configuration for ESP32-S3-N16R8:
+   - Upload Speed: 921600
+   - CPU Frequency: 240MHz (WiFi/BT)
+   - Flash Frequency: 80MHz
+   - Flash Mode: QIO
+   - Flash Size: 16MB (128Mb)
+   - Partition Scheme: 16M Flash (3MB APP/9.9MB FATFS)
+   - Core Debug Level: None
+   - PSRAM: OPI PSRAM
+
+Hardware Connections Reminder:
+ESP-32 (GPIO-6) ---> MAX98357 (LRC)
+ESP-32 (GPIO-7) ---> MAX98357 (DIN)  
+ESP-32 (GPIO-17) --> BME280 (SDA)
+ESP-32 (GPIO-18) --> BME280 (SCL)
+ESP-32 (GPIO-8) ---> MAX98357 (BCLK)
+ESP-32 (GPIO-9) ---> INMP441 (WS)
+ESP-32 (GPIO-10) --> INMP441 (SCK)
+ESP-32 (GPIO-11) --> INMP441 (SD)
+ESP-32 (3V3) ---> MAX98357 (VIN), MAX98357(SD), INMP441 (VDD), BME280 (VIN)
+ESP-32 (GND) ---> MAX98357 (GND), INMP441 (GND), BME280 (GND)
+SPEAKER (+) ---> MAX98357 (+)
+SPEAKER (-) ---> MAX98357 (-)
+
+Important Notes:
+1. Update WiFi credentials in the firmware before uploading
+2. Update Flask server IP address to match your computer's IP
+3. Built-in RGB LED pin may vary by ESP32-S3 variant - adjust RGB_LED_PIN if needed
+4. The code uses boot button (GPIO 0) for manual audio recording trigger 

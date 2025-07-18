@@ -1,0 +1,183 @@
+<aiml>
+
+<!-- Free software (c) 2001 ALICE AI Foundation -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License -->
+<!-- as published by the Free Software Foundation. -->
+
+<meta name="author" content="Jon Baer"/>
+<meta name="language" content="en"/>
+
+<!-- Error handling patterns -->
+<category>
+<pattern>INVALIDURL</pattern>
+<template>
+I am sorry that was an invalid URL you gave me. Please try again with a proper web address.
+</template>
+</category>
+
+<category>
+<pattern>ERROR</pattern>
+<template>
+<random>
+<li>I apologize for the error. Let me try to help you differently.</li>
+<li>Something went wrong. Could you please rephrase your question?</li>
+<li>I encountered an error. Would you like to try asking that another way?</li>
+<li>Oops! There seems to be an error. Let's start fresh.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>ERROR *</pattern>
+<template>
+I'm sorry there was an error with <star/>. Could you please try again?
+</template>
+</category>
+
+<category>
+<pattern>INVALID INPUT</pattern>
+<template>
+I don't understand that input. Could you please rephrase your question or request?
+</template>
+</category>
+
+<category>
+<pattern>SYSTEM ERROR</pattern>
+<template>
+I'm experiencing a system error right now. Please give me a moment and try again.
+</template>
+</category>
+
+<category>
+<pattern>CONNECTION ERROR</pattern>
+<template>
+There seems to be a connection issue. Let me try to help you with what I can access locally.
+</template>
+</category>
+
+<category>
+<pattern>TIMEOUT</pattern>
+<template>
+The request timed out. Would you like to try asking that again?
+</template>
+</category>
+
+<category>
+<pattern>NOT FOUND</pattern>
+<template>
+I couldn't find what you're looking for. Could you be more specific or try a different approach?
+</template>
+</category>
+
+<category>
+<pattern>PERMISSION DENIED</pattern>
+<template>
+I don't have permission to access that information. Is there something else I can help you with?
+</template>
+</category>
+
+<category>
+<pattern>FILE NOT FOUND</pattern>
+<template>
+I couldn't locate that file. Please check the filename and try again.
+</template>
+</category>
+
+<category>
+<pattern>ACCESS DENIED</pattern>
+<template>
+I don't have access to that resource. Is there another way I can assist you?
+</template>
+</category>
+
+<category>
+<pattern>UNKNOWN COMMAND</pattern>
+<template>
+I don't recognize that command. Would you like me to explain what I can help you with?
+</template>
+</category>
+
+<category>
+<pattern>SYNTAX ERROR</pattern>
+<template>
+There's a syntax error in what you entered. Could you please check and try again?
+</template>
+</category>
+
+<category>
+<pattern>DATABASE ERROR</pattern>
+<template>
+I'm having trouble accessing my database right now. Let me try to help you with the information I have available.
+</template>
+</category>
+
+<category>
+<pattern>NETWORK ERROR</pattern>
+<template>
+There seems to be a network connectivity issue. I'll work with the information I have locally.
+</template>
+</category>
+
+<!-- Fallback error patterns -->
+<category>
+<pattern>* ERROR *</pattern>
+<template>
+I'm sorry about the error with <star/>. Let me try to help you in a different way.
+</template>
+</category>
+
+<category>
+<pattern>* FAILED *</pattern>
+<template>
+I understand that <star/> failed. Would you like to try a different approach?
+</template>
+</category>
+
+<category>
+<pattern>SOMETHING WENT WRONG</pattern>
+<template>
+<random>
+<li>I apologize that something went wrong. Let's try again.</li>
+<li>Sorry about that! Let me see how else I can help.</li>
+<li>Technical difficulties happen. How else can I assist you?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>BROKEN</pattern>
+<template>
+What seems to be broken? I'd be happy to help troubleshoot or find an alternative solution.
+</template>
+</category>
+
+<category>
+<pattern>NOT WORKING</pattern>
+<template>
+What's not working? Let me see if I can help you fix it or suggest an alternative.
+</template>
+</category>
+
+<category>
+<pattern>CRASHED</pattern>
+<template>
+I'm sorry something crashed. That's frustrating! Is there another way I can help you accomplish what you need?
+</template>
+</category>
+
+<category>
+<pattern>BUG</pattern>
+<template>
+Bugs can be really annoying! Is there a specific issue you're encountering that I might be able to help with?
+</template>
+</category>
+
+<category>
+<pattern>MALFUNCTION</pattern>
+<template>
+Malfunctions are never fun to deal with. What's malfunctioning, and how can I help you work around it?
+</template>
+</category>
+
+</aiml> 

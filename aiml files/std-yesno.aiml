@@ -1,0 +1,412 @@
+<aiml>
+
+<!-- Free software (c) 2001 ALICE AI Foundation -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License -->
+<!-- as published by the Free Software Foundation. -->
+
+<meta name="author" content="Dr. Wallace"/>
+<meta name="language" content="en"/>
+
+<!-- Basic YES responses -->
+<category>
+<pattern>YES</pattern>
+<template>
+<random>
+<li>Great!</li>
+<li>Excellent!</li>
+<li>I'm glad you agree.</li>
+<li>That's wonderful.</li>
+<li>Perfect!</li>
+<li>Good to hear.</li>
+<li>Awesome!</li>
+<li>That's good.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>YES *</pattern>
+<template>
+<random>
+<li>I understand.</li>
+<li>OK, <sr/>.</li>
+<li>Great! <sr/>.</li>
+<li>That's interesting.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>YEAH</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>YEAH *</pattern>
+<template><srai>YES <star/></srai></template>
+</category>
+
+<category>
+<pattern>YEP</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>YEP *</pattern>
+<template><srai>YES <star/></srai></template>
+</category>
+
+<category>
+<pattern>YUP</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>SURE</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>SURE *</pattern>
+<template><srai>YES <star/></srai></template>
+</category>
+
+<category>
+<pattern>ABSOLUTELY</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>DEFINITELY</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>OF COURSE</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>CERTAINLY</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<!-- Basic NO responses -->
+<category>
+<pattern>NO</pattern>
+<template>
+<random>
+<li>OK.</li>
+<li>I understand.</li>
+<li>I see.</li>
+<li>Why so negative?</li>
+<li>Is that all you have to say?</li>
+<li>Alright then.</li>
+<li>Fair enough.</li>
+<li>No problem.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>NO *</pattern>
+<template>
+<random>
+<li>I see, <sr/>.</li>
+<li>OK, <sr/>.</li>
+<li>I understand.</li>
+<li>That's fine.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>NOPE</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>NOPE *</pattern>
+<template><srai>NO <star/></srai></template>
+</category>
+
+<category>
+<pattern>NAH</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>NAH *</pattern>
+<template><srai>NO <star/></srai></template>
+</category>
+
+<category>
+<pattern>NOT REALLY</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>NOT REALLY *</pattern>
+<template><srai>NO <star/></srai></template>
+</category>
+
+<category>
+<pattern>I DO NOT THINK SO</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>I DON'T THINK SO</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>NEVER</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>NEVER *</pattern>
+<template><srai>NO <star/></srai></template>
+</category>
+
+<!-- Context-specific NO responses -->
+<category>
+<pattern>NO</pattern>
+<that>ARE YOU MARRIED</that>
+<template>
+<srai>I AM SINGLE</srai>
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>ARE YOU A STUDENT</that>
+<template>
+What is your profession?
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>ARE YOU BORED</that>
+<template>
+What would you like to talk about?
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>DO YOU LIKE *</that>
+<template>
+What do you like instead?
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>DO YOU HAVE *</that>
+<template>
+I see, you don't have <person/>.
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>CAN YOU *</that>
+<template>
+That's okay, not everyone can <person/>.
+</template>
+</category>
+
+<category>
+<pattern>NO</pattern>
+<that>WOULD YOU LIKE *</that>
+<template>
+Maybe some other time then.
+</template>
+</category>
+
+<!-- Context-specific YES responses -->
+<category>
+<pattern>YES</pattern>
+<that>ARE YOU SURE</that>
+<template>
+Alright, I believe you.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>DO YOU LIKE *</that>
+<template>
+Great! I'm glad you like <person/>.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>DO YOU HAVE *</that>
+<template>
+That's nice that you have <person/>.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>CAN YOU *</that>
+<template>
+Excellent! That's a useful skill.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>WOULD YOU LIKE *</that>
+<template>
+Great! Let's proceed then.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>ARE YOU READY *</that>
+<template>
+Perfect! Let's go ahead.
+</template>
+</category>
+
+<!-- Maybe/uncertain responses -->
+<category>
+<pattern>MAYBE</pattern>
+<template>
+<random>
+<li>Why are you uncertain?</li>
+<li>What would help you decide?</li>
+<li>I understand your hesitation.</li>
+<li>Take your time to think about it.</li>
+<li>Perhaps you need more information?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>MAYBE *</pattern>
+<template>
+<srai>MAYBE</srai> <sr/>
+</template>
+</category>
+
+<category>
+<pattern>PERHAPS</pattern>
+<template><srai>MAYBE</srai></template>
+</category>
+
+<category>
+<pattern>POSSIBLY</pattern>
+<template><srai>MAYBE</srai></template>
+</category>
+
+<category>
+<pattern>I'M NOT SURE</pattern>
+<template><srai>MAYBE</srai></template>
+</category>
+
+<category>
+<pattern>I AM NOT SURE</pattern>
+<template><srai>MAYBE</srai></template>
+</category>
+
+<category>
+<pattern>I DON'T KNOW</pattern>
+<template>
+<random>
+<li>That's okay, not knowing is perfectly fine.</li>
+<li>Would you like to explore the topic more?</li>
+<li>Sometimes uncertainty is natural.</li>
+<li>Is there something specific you'd like to know?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>I DO NOT KNOW</pattern>
+<template><srai>I DON'T KNOW</srai></template>
+</category>
+
+<!-- Agreement patterns -->
+<category>
+<pattern>I AGREE</pattern>
+<template>
+<random>
+<li>I'm glad we're on the same page.</li>
+<li>Great minds think alike!</li>
+<li>That's good to hear.</li>
+<li>Excellent!</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>I AGREE *</pattern>
+<template>
+<srai>I AGREE</srai> <sr/>
+</template>
+</category>
+
+<category>
+<pattern>I DISAGREE</pattern>
+<template>
+<random>
+<li>That's okay, we can agree to disagree.</li>
+<li>I respect your opinion.</li>
+<li>Different perspectives are valuable.</li>
+<li>Can you tell me more about your viewpoint?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>I DISAGREE *</pattern>
+<template>
+<srai>I DISAGREE</srai> <sr/>
+</template>
+</category>
+
+<category>
+<pattern>EXACTLY</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>RIGHT</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>CORRECT</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>TRUE</pattern>
+<template><srai>YES</srai></template>
+</category>
+
+<category>
+<pattern>WRONG</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>FALSE</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+<category>
+<pattern>INCORRECT</pattern>
+<template><srai>NO</srai></template>
+</category>
+
+</aiml> 

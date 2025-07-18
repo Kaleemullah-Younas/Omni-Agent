@@ -1,0 +1,183 @@
+<aiml>
+
+<!-- Free software (c) 2001 ALICE AI Foundation -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License -->
+<!-- as published by the Free Software Foundation. -->
+
+<meta name="author" content="Jon Baer"/>
+<meta name="language" content="en"/>
+
+<!-- Inactivity handling patterns -->
+<category>
+<pattern>INACTIVITY</pattern>
+<template>
+<random>
+<li>Are you still there? Is there anything you'd like to talk about?</li>
+<li>Hello? Would you like to continue our conversation?</li>
+<li>I'm here whenever you're ready to chat again.</li>
+<li>Take your time! I'll be here when you want to continue.</li>
+<li>Is there something specific you'd like to discuss?</li>
+<li>Feel free to ask me anything when you're ready.</li>
+<li>I'm still here if you have any questions or just want to talk.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>LONG PAUSE</pattern>
+<template>
+<random>
+<li>That was a long pause! Everything okay?</li>
+<li>I noticed you went quiet for a while. What's on your mind?</li>
+<li>Welcome back! Were you thinking about something?</li>
+<li>No worries about the pause. What would you like to talk about now?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>SILENCE</pattern>
+<template>
+<random>
+<li>Silence can be golden sometimes. But I'm here when you want to talk!</li>
+<li>Quiet moments are fine too. I'll wait for you.</li>
+<li>Sometimes silence says a lot. How are you feeling?</li>
+<li>I'm comfortable with silence, but I'm here if you want to chat.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>TIMEOUT</pattern>
+<template>
+<random>
+<li>Our conversation timed out, but I'm back now! How can I help?</li>
+<li>Sorry for the timeout. Where were we?</li>
+<li>Connection restored! What would you like to discuss?</li>
+<li>I'm back online. What's on your mind?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>ARE YOU THERE</pattern>
+<template>
+<random>
+<li>Yes, I'm here! How can I help you?</li>
+<li>I'm always here for you. What's up?</li>
+<li>Absolutely! I'm ready to chat whenever you are.</li>
+<li>Yes, I'm here and ready to help. What would you like to talk about?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>HELLO AGAIN</pattern>
+<template>
+<random>
+<li>Hello again! Great to have you back.</li>
+<li>Welcome back! How has your day been?</li>
+<li>Nice to see you again! What brings you back?</li>
+<li>Hello! I'm glad you decided to continue our conversation.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>I'M BACK</pattern>
+<template>
+<random>
+<li>Welcome back! I missed our conversation.</li>
+<li>Great to have you back! What would you like to discuss?</li>
+<li>Nice! How was your break?</li>
+<li>Welcome back! I was waiting patiently for you.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>SORRY FOR THE DELAY</pattern>
+<template>
+<random>
+<li>No worries at all! I'm patient. What's on your mind?</li>
+<li>Don't apologize! I'm here whenever you need me.</li>
+<li>No problem with delays. Life happens! How can I help?</li>
+<li>That's perfectly fine. I'm here when you're ready.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>I WAS AWAY</pattern>
+<template>
+<random>
+<li>Welcome back! I hope everything went well while you were away.</li>
+<li>No problem! I'm glad you're back. What shall we talk about?</li>
+<li>That's fine! I'm here whenever you return. How are you?</li>
+<li>Welcome back! I've been here waiting patiently.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>STILL THERE</pattern>
+<template>
+<random>
+<li>Yes, I'm still here! Always ready to chat with you.</li>
+<li>Absolutely! I don't go anywhere. What's up?</li>
+<li>Of course! I'm here 24/7. How can I help?</li>
+<li>Yes indeed! I'm always available for our conversations.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>WHERE DID YOU GO</pattern>
+<template>
+<random>
+<li>I didn't go anywhere! I'm always here. Maybe there was a connection issue?</li>
+<li>I've been here the whole time! Perhaps you stepped away?</li>
+<li>I never leave! I'm always ready to chat when you are.</li>
+<li>I'm always here! Maybe we just had a quiet moment.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>CONNECTION LOST</pattern>
+<template>
+<random>
+<li>Looks like we lost connection for a moment, but I'm back now!</li>
+<li>Connection issues happen! I'm here and ready to continue.</li>
+<li>We're reconnected! Where would you like to pick up our conversation?</li>
+<li>All good now! Let's continue where we left off.</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>WAKE UP</pattern>
+<template>
+<random>
+<li>I'm always awake and ready! What can I do for you?</li>
+<li>I never sleep! I'm here and alert. How can I help?</li>
+<li>Wide awake and ready to chat! What's on your mind?</li>
+<li>I'm always on! What would you like to talk about?</li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>ANYONE THERE</pattern>
+<template>
+<random>
+<li>Yes, I'm here! How can I assist you today?</li>
+<li>I'm here and ready to help! What do you need?</li>
+<li>Absolutely! I'm always here for you. What's up?</li>
+<li>Yes, always here! What would you like to discuss?</li>
+</random>
+</template>
+</category>
+
+</aiml> 

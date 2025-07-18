@@ -1,0 +1,852 @@
+<aiml version="2.0">
+
+<!-- Comprehensive Relationship Patterns -->
+
+<!-- Enhanced Pattern: MY [RELATION] NAME IS [NAME] with duplicate checking -->
+<category>
+    <pattern>MY FATHER NAME IS *</pattern>
+    <template>
+        <condition name="father">
+            <li value="">
+                <think><set name="relation">father</set><set name="person1"><star/></set><set name="father"><star/></set><set name="other_gender">male</set></think>
+                Okay, your father's name is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">father</set><set name="person1"><star/></set><set name="other_gender">male</set></think>
+                <condition>
+                    <li name="father" value="<star/>">I already know that <star/> is your father.</li>
+                    <li>I know your father's name already. This name you have given is wrong. Your father name is <get name="father"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY MOTHER NAME IS *</pattern>
+    <template>
+        <condition name="mother">
+            <li value="">
+                <think><set name="relation">mother</set><set name="person1"><star/></set><set name="mother"><star/></set><set name="other_gender">female</set></think>
+                Okay, your mother's name is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">mother</set><set name="person1"><star/></set><set name="other_gender">female</set></think>
+                <condition>
+                    <li name="mother" value="<star/>">I already know that <star/> is your mother.</li>
+                    <li>I know your mother's name already. This name you have given is wrong. Your mother name is <get name="mother"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY BROTHER NAME IS *</pattern>
+    <template>
+        <condition name="brother">
+            <li value="">
+                <think><set name="relation">brother</set><set name="person1"><star/></set><set name="brother"><star/></set></think>
+                Got it, your brother's name is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">brother</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="brother" value="<star/>">I already know that <star/> is your brother.</li>
+                    <li>I know your brother's name already. This name you have given is wrong. Your brother name is <get name="brother"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY SISTER NAME IS *</pattern>
+    <template>
+        <condition name="sister">
+            <li value="">
+                <think><set name="relation">sister</set><set name="person1"><star/></set><set name="sister"><star/></set></think>
+                Got it, your sister's name is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">sister</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="sister" value="<star/>">I already know that <star/> is your sister.</li>
+                    <li>I know your sister's name already. This name you have given is wrong. Your sister name is <get name="sister"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY SON NAME IS *</pattern>
+    <template>
+        <think><set name="relation">son</set><set name="person1"><star/></set></think>
+        Nice! Your son's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DAUGHTER NAME IS *</pattern>
+    <template>
+        <think><set name="relation">daughter</set><set name="person1"><star/></set></think>
+        Nice! Your daughter's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY HUSBAND NAME IS *</pattern>
+    <template>
+        <think><set name="relation">husband</set><set name="person1"><star/></set></think>
+        Okay, your husband's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY WIFE NAME IS *</pattern>
+    <template>
+        <think><set name="relation">wife</set><set name="person1"><star/></set></think>
+        Okay, your wife's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY UNCLE NAME IS *</pattern>
+    <template>
+        <think><set name="relation">uncle</set><set name="person1"><star/></set></think>
+        Got it, your uncle's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY AUNT NAME IS *</pattern>
+    <template>
+        <think><set name="relation">aunt</set><set name="person1"><star/></set></think>
+        Got it, your aunt's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY COUSIN NAME IS *</pattern>
+    <template>
+        <think><set name="relation">cousin</set><set name="person1"><star/></set></think>
+        Nice! Your cousin's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY GRANDFATHER NAME IS *</pattern>
+    <template>
+        <think><set name="relation">grandfather</set><set name="person1"><star/></set></think>
+        Got it, your grandfather's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY GRANDMOTHER NAME IS *</pattern>
+    <template>
+        <think><set name="relation">grandmother</set><set name="person1"><star/></set></think>
+        Got it, your grandmother's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY FRIEND NAME IS *</pattern>
+    <template>
+        <think><set name="relation">friend</set><set name="person1"><star/></set></think>
+        Nice! Your friend's name is <star/>.
+    </template>
+</category>
+
+<!-- Pattern: MY [RELATION] IS [NAME] -->
+<category>
+    <pattern>MY FATHER IS *</pattern>
+    <template>
+        <condition name="father">
+            <li value="">
+                <think><set name="relation">father</set><set name="person1"><star/></set><set name="father"><star/></set></think>
+                Okay, your father is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">father</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="father" value="<star/>">I already know that <star/> is your father.</li>
+                    <li>I know your father's name already. This name you have given is wrong. Your father name is <get name="father"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY MOTHER IS *</pattern>
+    <template>
+        <condition name="mother">
+            <li value="">
+                <think><set name="relation">mother</set><set name="person1"><star/></set><set name="mother"><star/></set></think>
+                Okay, your mother is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">mother</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="mother" value="<star/>">I already know that <star/> is your mother.</li>
+                    <li>I know your mother's name already. This name you have given is wrong. Your mother name is <get name="mother"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY BROTHER IS *</pattern>
+    <template>
+        <condition name="brother">
+            <li value="">
+                <think><set name="relation">brother</set><set name="person1"><star/></set><set name="brother"><star/></set></think>
+                Got it, your brother is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">brother</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="brother" value="<star/>">I already know that <star/> is your brother.</li>
+                    <li>I know your brother's name already. This name you have given is wrong. Your brother name is <get name="brother"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY SISTER IS *</pattern>
+    <template>
+        <condition name="sister">
+            <li value="">
+                <think><set name="relation">sister</set><set name="person1"><star/></set><set name="sister"><star/></set></think>
+                Got it, your sister is <star/>.
+            </li>
+            <li>
+                <think><set name="relation">sister</set><set name="person1"><star/></set></think>
+                <condition>
+                    <li name="sister" value="<star/>">I already know that <star/> is your sister.</li>
+                    <li>I know your sister's name already. This name you have given is wrong. Your sister name is <get name="sister"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>MY SON IS *</pattern>
+    <template>
+        <think><set name="relation">son</set><set name="person1"><star/></set></think>
+        Nice! Your son is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DAUGHTER IS *</pattern>
+    <template>
+        <think><set name="relation">daughter</set><set name="person1"><star/></set></think>
+        Nice! Your daughter is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY HUSBAND IS *</pattern>
+    <template>
+        <think><set name="relation">husband</set><set name="person1"><star/></set></think>
+        Okay, your husband is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY WIFE IS *</pattern>
+    <template>
+        <think><set name="relation">wife</set><set name="person1"><star/></set></think>
+        Okay, your wife is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY UNCLE IS *</pattern>
+    <template>
+        <think><set name="relation">uncle</set><set name="person1"><star/></set></think>
+        Got it, your uncle is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY AUNT IS *</pattern>
+    <template>
+        <think><set name="relation">aunt</set><set name="person1"><star/></set></think>
+        Got it, your aunt is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY COUSIN IS *</pattern>
+    <template>
+        <think><set name="relation">cousin</set><set name="person1"><star/></set></think>
+        Nice! Your cousin is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY GRANDFATHER IS *</pattern>
+    <template>
+        <think><set name="relation">grandfather</set><set name="person1"><star/></set></think>
+        Got it, your grandfather is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY GRANDMOTHER IS *</pattern>
+    <template>
+        <think><set name="relation">grandmother</set><set name="person1"><star/></set></think>
+        Got it, your grandmother is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY FRIEND IS *</pattern>
+    <template>
+        <think><set name="relation">friend</set><set name="person1"><star/></set></think>
+        Nice! Your friend is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BOSS IS *</pattern>
+    <template>
+        <think><set name="relation">boss</set><set name="person1"><star/></set></think>
+        Got it, your boss is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY COLLEAGUE IS *</pattern>
+    <template>
+        <think><set name="relation">colleague</set><set name="person1"><star/></set></think>
+        Nice! Your colleague is <star/>.
+    </template>
+</category>
+
+<!-- Pattern: [NAME] IS MY [RELATION] -->
+<category>
+    <pattern>* IS MY FATHER</pattern>
+    <template>
+        <think><set name="relation">father</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your father.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY MOTHER</pattern>
+    <template>
+        <think><set name="relation">mother</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your mother.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BROTHER</pattern>
+    <template>
+        <think><set name="relation">brother</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your brother.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY SISTER</pattern>
+    <template>
+        <think><set name="relation">sister</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your sister.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY SON</pattern>
+    <template>
+        <think><set name="relation">son</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your son.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY DAUGHTER</pattern>
+    <template>
+        <think><set name="relation">daughter</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your daughter.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY HUSBAND</pattern>
+    <template>
+        <think><set name="relation">husband</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your husband.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY WIFE</pattern>
+    <template>
+        <think><set name="relation">wife</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your wife.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY UNCLE</pattern>
+    <template>
+        <think><set name="relation">uncle</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your uncle.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY AUNT</pattern>
+    <template>
+        <think><set name="relation">aunt</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your aunt.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY COUSIN</pattern>
+    <template>
+        <think><set name="relation">cousin</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your cousin.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY GRANDFATHER</pattern>
+    <template>
+        <think><set name="relation">grandfather</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your grandfather.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY GRANDMOTHER</pattern>
+    <template>
+        <think><set name="relation">grandmother</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your grandmother.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY FRIEND</pattern>
+    <template>
+        <think><set name="relation">friend</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your friend.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BOSS</pattern>
+    <template>
+        <think><set name="relation">boss</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your boss.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY COLLEAGUE</pattern>
+    <template>
+        <think><set name="relation">colleague</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your colleague.
+    </template>
+</category>
+
+<!-- Variant patterns with common alternatives -->
+<category>
+    <pattern>MY DAD IS *</pattern>
+    <template>
+        <think><set name="relation">father</set><set name="person1"><star/></set></think>
+        Okay, your dad is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DAD NAME IS *</pattern>
+    <template>
+        <think><set name="relation">father</set><set name="person1"><star/></set></think>
+        Okay, your dad's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY MOM IS *</pattern>
+    <template>
+        <think><set name="relation">mother</set><set name="person1"><star/></set></think>
+        Okay, your mom is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY MOM NAME IS *</pattern>
+    <template>
+        <think><set name="relation">mother</set><set name="person1"><star/></set></think>
+        Okay, your mom's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BRO IS *</pattern>
+    <template>
+        <think><set name="relation">brother</set><set name="person1"><star/></set></think>
+        Got it, your brother is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY SIS IS *</pattern>
+    <template>
+        <think><set name="relation">sister</set><set name="person1"><star/></set></think>
+        Got it, your sister is <star/>.
+    </template>
+</category>
+
+<!-- Eastern Family Relationship Patterns -->
+
+<category>
+    <pattern>MY ABU IS *</pattern>
+    <template>
+        <think><set name="relation">abu</set><set name="person1"><star/></set></think>
+        Okay, your abu is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY ABU NAME IS *</pattern>
+    <template>
+        <think><set name="relation">abu</set><set name="person1"><star/></set></think>
+        Okay, your abu's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY AMI IS *</pattern>
+    <template>
+        <think><set name="relation">ami</set><set name="person1"><star/></set></think>
+        Okay, your ami is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY AMI NAME IS *</pattern>
+    <template>
+        <think><set name="relation">ami</set><set name="person1"><star/></set></think>
+        Okay, your ami's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY TAYA IS *</pattern>
+    <template>
+        <think><set name="relation">taya</set><set name="person1"><star/></set></think>
+        Got it, your taya is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY TAYA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">taya</set><set name="person1"><star/></set></think>
+        Got it, your taya's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY CHACHA IS *</pattern>
+    <template>
+        <think><set name="relation">chacha</set><set name="person1"><star/></set></think>
+        Got it, your chacha is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY CHACHA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">chacha</set><set name="person1"><star/></set></think>
+        Got it, your chacha's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY MAMA IS *</pattern>
+    <template>
+        <think><set name="relation">mama</set><set name="person1"><star/></set></think>
+        Got it, your mama is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY MAMA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">mama</set><set name="person1"><star/></set></think>
+        Got it, your mama's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY KHALA IS *</pattern>
+    <template>
+        <think><set name="relation">khala</set><set name="person1"><star/></set></think>
+        Got it, your khala is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY KHALA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">khala</set><set name="person1"><star/></set></think>
+        Got it, your khala's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DADA IS *</pattern>
+    <template>
+        <think><set name="relation">dada</set><set name="person1"><star/></set></think>
+        Got it, your dada is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DADA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">dada</set><set name="person1"><star/></set></think>
+        Got it, your dada's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DADI IS *</pattern>
+    <template>
+        <think><set name="relation">dadi</set><set name="person1"><star/></set></think>
+        Got it, your dadi is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY DADI NAME IS *</pattern>
+    <template>
+        <think><set name="relation">dadi</set><set name="person1"><star/></set></think>
+        Got it, your dadi's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY NANA IS *</pattern>
+    <template>
+        <think><set name="relation">nana</set><set name="person1"><star/></set></think>
+        Got it, your nana is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY NANA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">nana</set><set name="person1"><star/></set></think>
+        Got it, your nana's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY NANI IS *</pattern>
+    <template>
+        <think><set name="relation">nani</set><set name="person1"><star/></set></think>
+        Got it, your nani is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY NANI NAME IS *</pattern>
+    <template>
+        <think><set name="relation">nani</set><set name="person1"><star/></set></think>
+        Got it, your nani's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BETA IS *</pattern>
+    <template>
+        <think><set name="relation">beta</set><set name="person1"><star/></set></think>
+        Nice! Your beta is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BETA NAME IS *</pattern>
+    <template>
+        <think><set name="relation">beta</set><set name="person1"><star/></set></think>
+        Nice! Your beta's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BETI IS *</pattern>
+    <template>
+        <think><set name="relation">beti</set><set name="person1"><star/></set></think>
+        Nice! Your beti is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BETI NAME IS *</pattern>
+    <template>
+        <think><set name="relation">beti</set><set name="person1"><star/></set></think>
+        Nice! Your beti's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BHAI IS *</pattern>
+    <template>
+        <think><set name="relation">bhai</set><set name="person1"><star/></set></think>
+        Got it, your bhai is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BHAI NAME IS *</pattern>
+    <template>
+        <think><set name="relation">bhai</set><set name="person1"><star/></set></think>
+        Got it, your bhai's name is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BEHN IS *</pattern>
+    <template>
+        <think><set name="relation">behn</set><set name="person1"><star/></set></think>
+        Got it, your behn is <star/>.
+    </template>
+</category>
+
+<category>
+    <pattern>MY BEHN NAME IS *</pattern>
+    <template>
+        <think><set name="relation">behn</set><set name="person1"><star/></set></think>
+        Got it, your behn's name is <star/>.
+    </template>
+</category>
+
+<!-- Eastern relationship "IS MY" patterns -->
+<category>
+    <pattern>* IS MY ABU</pattern>
+    <template>
+        <think><set name="relation">abu</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your abu.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY AMI</pattern>
+    <template>
+        <think><set name="relation">ami</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your ami.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY TAYA</pattern>
+    <template>
+        <think><set name="relation">taya</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your taya.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY CHACHA</pattern>
+    <template>
+        <think><set name="relation">chacha</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your chacha.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY MAMA</pattern>
+    <template>
+        <think><set name="relation">mama</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your mama.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY KHALA</pattern>
+    <template>
+        <think><set name="relation">khala</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your khala.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY DADA</pattern>
+    <template>
+        <think><set name="relation">dada</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your dada.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY DADI</pattern>
+    <template>
+        <think><set name="relation">dadi</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your dadi.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY NANA</pattern>
+    <template>
+        <think><set name="relation">nana</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your nana.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY NANI</pattern>
+    <template>
+        <think><set name="relation">nani</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your nani.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BETA</pattern>
+    <template>
+        <think><set name="relation">beta</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your beta.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BETI</pattern>
+    <template>
+        <think><set name="relation">beti</set><set name="person1"><star/></set></think>
+        Nice! <star/> is your beti.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BHAI</pattern>
+    <template>
+        <think><set name="relation">bhai</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your bhai.
+    </template>
+</category>
+
+<category>
+    <pattern>* IS MY BEHN</pattern>
+    <template>
+        <think><set name="relation">behn</set><set name="person1"><star/></set></think>
+        Got it, <star/> is your behn.
+    </template>
+</category>
+
+</aiml> 

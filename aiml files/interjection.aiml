@@ -1,0 +1,329 @@
+<aiml>
+
+<!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License     -->
+<!-- as published by the Free Software Foundation.   -->
+<!-- Complies with AIML 1.0 Tag Set Specification -->
+<!-- as adopted by the ALICE A.I. Foundation.  -->
+<!-- Last modified 10/5/2011 -->
+<!-- Enhanced for better conversational flow -->
+<!-- -->
+
+<!-- Common interjections and short responses -->
+<category><pattern>WOW</pattern>
+<template><random>
+<li>That's amazing!</li>
+<li>Impressive, right?</li>
+<li>Pretty incredible!</li>
+<li>I know, right?</li>
+<li>That's quite something!</li>
+</random></template>
+</category>
+
+<category><pattern>WOW *</pattern>
+<template><random>
+<li>I know! <star/> is pretty amazing.</li>
+<li>Yes, <star/> can be quite impressive!</li>
+<li>That's exactly what I thought about <star/>!</li>
+</random></template>
+</category>
+
+<category><pattern>HMM</pattern>
+<template><random>
+<li>What are you thinking about?</li>
+<li>Something on your mind?</li>
+<li>Pondering something?</li>
+<li>What's got you thinking?</li>
+<li>Care to share your thoughts?</li>
+</random></template>
+</category>
+
+<category><pattern>HMM *</pattern>
+<template><random>
+<li>Yes, <star/> is worth thinking about.</li>
+<li>I see you're considering <star/>.</li>
+<li>That's an interesting point about <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>UH</pattern>
+<template><random>
+<li>Take your time.</li>
+<li>No rush!</li>
+<li>It's okay to pause and think.</li>
+<li>What would you like to talk about?</li>
+</random></template>
+</category>
+
+<category><pattern>UH *</pattern>
+<template><random>
+<li>I understand, <star/>.</li>
+<li>I see what you mean about <star/>.</li>
+<li>Yes, <star/> can be confusing.</li>
+</random></template>
+</category>
+
+<category><pattern>OH</pattern>
+<template><random>
+<li>Yes?</li>
+<li>What is it?</li>
+<li>Something surprise you?</li>
+<li>What's up?</li>
+<li>Go on...</li>
+</random></template>
+</category>
+
+<category><pattern>OH *</pattern>
+<template><random>
+<li>I see, <star/>.</li>
+<li>Yes, <star/> is interesting.</li>
+<li>That's a good point about <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>AH</pattern>
+<template><random>
+<li>I see!</li>
+<li>Got it!</li>
+<li>That makes sense.</li>
+<li>Now I understand.</li>
+<li>Aha!</li>
+</random></template>
+</category>
+
+<category><pattern>AH *</pattern>
+<template><random>
+<li>Yes, <star/> makes sense now.</li>
+<li>I understand about <star/>.</li>
+<li>That clarifies <star/> for me.</li>
+</random></template>
+</category>
+
+<category><pattern>OK</pattern>
+<template><random>
+<li>Great!</li>
+<li>Sounds good.</li>
+<li>Alright then.</li>
+<li>Perfect.</li>
+<li>What's next?</li>
+</random></template>
+</category>
+
+<category><pattern>OK *</pattern>
+<template><random>
+<li>Alright, <star/>.</li>
+<li>I understand, <star/>.</li>
+<li>Got it, <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>OKAY</pattern>
+<template><srai>OK</srai></template>
+</category>
+
+<category><pattern>OKAY *</pattern>
+<template><srai>OK <star/></srai></template>
+</category>
+
+<category><pattern>COOL</pattern>
+<template><random>
+<li>Definitely!</li>
+<li>I think so too!</li>
+<li>Pretty awesome!</li>
+<li>Right on!</li>
+<li>That's great!</li>
+</random></template>
+</category>
+
+<category><pattern>COOL *</pattern>
+<template><random>
+<li>Yes, <star/> is really cool!</li>
+<li>I agree, <star/> is awesome!</li>
+<li><star/> is definitely cool!</li>
+</random></template>
+</category>
+
+<category><pattern>NICE</pattern>
+<template><random>
+<li>I think so too!</li>
+<li>Glad you like it!</li>
+<li>Pretty good, right?</li>
+<li>That's what I thought!</li>
+</random></template>
+</category>
+
+<category><pattern>NICE *</pattern>
+<template><random>
+<li>Yes, <star/> is nice!</li>
+<li>I'm glad you think <star/> is nice.</li>
+<li><star/> is pretty nice indeed!</li>
+</random></template>
+</category>
+
+<category><pattern>AWESOME</pattern>
+<template><random>
+<li>Totally!</li>
+<li>I know, right?</li>
+<li>Absolutely awesome!</li>
+<li>Couldn't agree more!</li>
+</random></template>
+</category>
+
+<category><pattern>AWESOME *</pattern>
+<template><random>
+<li>Yes, <star/> is awesome!</li>
+<li><star/> is definitely awesome!</li>
+<li>I think <star/> is pretty awesome too!</li>
+</random></template>
+</category>
+
+<category><pattern>INTERESTING</pattern>
+<template><random>
+<li>What do you find most interesting about it?</li>
+<li>I think so too!</li>
+<li>Would you like to explore it more?</li>
+<li>What specifically interests you?</li>
+</random></template>
+</category>
+
+<category><pattern>INTERESTING *</pattern>
+<template><random>
+<li>Yes, <star/> is quite interesting.</li>
+<li>I find <star/> interesting too.</li>
+<li>What makes <star/> interesting to you?</li>
+</random></template>
+</category>
+
+<category><pattern>WHATEVER</pattern>
+<template><random>
+<li>You seem a bit indifferent. Is everything okay?</li>
+<li>Is there something else you'd rather talk about?</li>
+<li>Not feeling very engaged today?</li>
+<li>What would interest you more?</li>
+</random></template>
+</category>
+
+<category><pattern>WHATEVER *</pattern>
+<template><random>
+<li>You don't seem too interested in <star/>.</li>
+<li>Would you prefer to discuss something else instead of <star/>?</li>
+<li>Is <star/> not very interesting to you?</li>
+</random></template>
+</category>
+
+<category><pattern>REALLY</pattern>
+<template><random>
+<li>Yes, really!</li>
+<li>Absolutely!</li>
+<li>For sure!</li>
+<li>Indeed!</li>
+<li>You bet!</li>
+</random></template>
+</category>
+
+<category><pattern>REALLY *</pattern>
+<template><random>
+<li>Yes, really <star/>.</li>
+<li>Absolutely, <star/>.</li>
+<li>For sure, <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>SERIOUSLY</pattern>
+<template><random>
+<li>Yes, I'm serious.</li>
+<li>Completely serious.</li>
+<li>I wouldn't joke about that.</li>
+<li>Dead serious.</li>
+</random></template>
+</category>
+
+<category><pattern>SERIOUSLY *</pattern>
+<template><random>
+<li>Yes, seriously <star/>.</li>
+<li>I'm serious about <star/>.</li>
+<li><star/> is definitely serious.</li>
+</random></template>
+</category>
+
+<category><pattern>GREAT</pattern>
+<template><random>
+<li>I'm glad you think so!</li>
+<li>Wonderful!</li>
+<li>That's fantastic!</li>
+<li>Excellent!</li>
+</random></template>
+</category>
+
+<category><pattern>GREAT *</pattern>
+<template><random>
+<li>Yes, <star/> is great!</li>
+<li>I think <star/> is great too!</li>
+<li><star/> is definitely great!</li>
+</random></template>
+</category>
+
+<category><pattern>GOOD</pattern>
+<template><random>
+<li>I'm glad!</li>
+<li>That's good to hear!</li>
+<li>Excellent!</li>
+<li>Perfect!</li>
+</random></template>
+</category>
+
+<category><pattern>GOOD *</pattern>
+<template><random>
+<li>Yes, <star/> is good.</li>
+<li>I think <star/> is good too.</li>
+<li>Good point about <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>BAD</pattern>
+<template><random>
+<li>That's unfortunate.</li>
+<li>Sorry to hear that.</li>
+<li>That doesn't sound good.</li>
+<li>What makes it bad?</li>
+</random></template>
+</category>
+
+<category><pattern>BAD *</pattern>
+<template><random>
+<li>Sorry that <star/> is bad.</li>
+<li>What makes <star/> bad?</li>
+<li>That's unfortunate about <star/>.</li>
+</random></template>
+</category>
+
+<!-- Thoughtful pauses -->
+<category><pattern>LET ME THINK</pattern>
+<template><random>
+<li>Take your time!</li>
+<li>No rush, think it through.</li>
+<li>I'll wait while you think.</li>
+<li>Good idea to think it over.</li>
+</random></template>
+</category>
+
+<category><pattern>I SEE</pattern>
+<template><random>
+<li>What do you think about it?</li>
+<li>Does that make sense to you?</li>
+<li>Any thoughts on that?</li>
+<li>How do you feel about it?</li>
+</random></template>
+</category>
+
+<category><pattern>RIGHT</pattern>
+<template><random>
+<li>Exactly!</li>
+<li>You got it!</li>
+<li>That's correct!</li>
+<li>Right on!</li>
+</random></template>
+</category>
+
+</aiml> 

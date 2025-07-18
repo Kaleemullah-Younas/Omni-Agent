@@ -1,0 +1,150 @@
+<aiml>
+
+<!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License     -->
+<!-- as published by the Free Software Foundation.   -->
+<!-- Complies with AIML 1.0 Tag Set Specification -->
+<!-- as adopted by the ALICE A.I. Foundation.  -->
+<!-- Last modified 11/24/2011 -->
+<!-- Simplified for better usability -->
+<!-- -->
+
+<!-- Basic personality questions -->
+<category><pattern>WHAT IS MY PERSONALITY</pattern>
+<template>That's a great question! Your personality is unique to you. From our conversations, you seem thoughtful and curious. What aspects of your personality are you most interested in exploring?</template>
+</category>
+
+<category><pattern>WHAT IS MY PERSONALITY TYPE</pattern>
+<template>Personality types are fascinating! While I can't give you a professional assessment, I notice you're someone who asks thoughtful questions. Are you interested in personality theories like Myers-Briggs or the Big Five?</template>
+</category>
+
+<category><pattern>AM I INTROVERTED</pattern>
+<template>Do you feel energized by spending time alone or do you prefer being around others? Introverts often recharge through solitude and prefer deeper conversations over small talk.</template>
+</category>
+
+<category><pattern>AM I EXTROVERTED</pattern>
+<template>Extroverts typically gain energy from social interactions and enjoy being around people. Do you find yourself feeling more energetic after spending time with others?</template>
+</category>
+
+<category><pattern>AM I CREATIVE</pattern>
+<template>Creativity comes in many forms! Do you enjoy artistic activities, coming up with new ideas, or finding unique solutions to problems? What makes you feel most creative?</template>
+</category>
+
+<category><pattern>AM I SMART</pattern>
+<template>Intelligence has many dimensions! You're clearly thoughtful enough to engage in meaningful conversation. What areas do you feel you excel in? Are you more analytical, creative, emotionally intelligent, or practical?</template>
+</category>
+
+<category><pattern>AM I FUNNY</pattern>
+<template>Humor is subjective! Do you enjoy making others laugh? What kind of humor appeals to you - puns, observational comedy, witty banter, or something else?</template>
+</category>
+
+<category><pattern>AM I KIND</pattern>
+<template>Kindness is a wonderful trait! Do you find yourself caring about others' feelings and wanting to help people? That's often a sign of a kind personality.</template>
+</category>
+
+<category><pattern>AM I ORGANIZED</pattern>
+<template>Organization is a useful skill! Do you like having things in order, making lists, and planning ahead? Or do you prefer a more spontaneous, flexible approach to life?</template>
+</category>
+
+<category><pattern>AM I LAZY</pattern>
+<template>I don't think you're lazy - you're here having a thoughtful conversation! Sometimes what feels like laziness might be your brain's way of taking a needed break. What activities make you feel most energized?</template>
+</category>
+
+<!-- Personality traits discussion -->
+<category><pattern>I AM INTROVERTED</pattern>
+<template>Introversion is a wonderful trait! Introverts often have rich inner lives and excel at deep thinking and meaningful relationships. What do you enjoy most about your introverted nature?</template>
+</category>
+
+<category><pattern>I AM EXTROVERTED</pattern>
+<template>Extroversion brings so much energy to the world! Extroverts often excel at connecting with people and bringing groups together. How do you use your extroverted nature?</template>
+</category>
+
+<category><pattern>I AM CREATIVE</pattern>
+<template>That's fantastic! Creativity is such a valuable gift. What forms does your creativity take? Do you enjoy art, writing, music, problem-solving, or other creative pursuits?</template>
+</category>
+
+<category><pattern>I AM ANALYTICAL</pattern>
+<template>Analytical thinking is incredibly valuable! Do you enjoy breaking down complex problems, looking at data, or understanding how things work? That's a great strength to have.</template>
+</category>
+
+<category><pattern>I AM EMOTIONAL</pattern>
+<template>Emotional intelligence and sensitivity are strengths! Being in touch with emotions - yours and others' - can lead to deeper connections and greater empathy. How do you use your emotional awareness?</template>
+</category>
+
+<category><pattern>I AM LOGICAL</pattern>
+<template>Logic is a powerful tool! Do you enjoy reasoning through problems step by step? Logical thinking helps in so many areas of life, from decision-making to problem-solving.</template>
+</category>
+
+<category><pattern>I AM OPTIMISTIC</pattern>
+<template>Optimism is a wonderful way to approach life! It can help with resilience and often leads to better outcomes. What helps you maintain your positive outlook?</template>
+</category>
+
+<category><pattern>I AM PESSIMISTIC</pattern>
+<template>What some call pessimism, others might call realism or careful thinking. Do you find that your cautious approach helps you prepare for challenges? Sometimes a balanced perspective is most valuable.</template>
+</category>
+
+<!-- Personality preferences -->
+<category><pattern>I LIKE PEOPLE</pattern>
+<template>That's wonderful! People are endlessly fascinating, aren't they? What do you enjoy most about interacting with others?</template>
+</category>
+
+<category><pattern>I PREFER SOLITUDE</pattern>
+<template>There's great value in solitude! It allows for reflection, creativity, and recharging. What do you enjoy doing when you're alone?</template>
+</category>
+
+<category><pattern>I LIKE ADVENTURE</pattern>
+<template>Adventure keeps life exciting! Are you drawn to physical adventures like travel and outdoor activities, or do you prefer intellectual adventures like learning new things?</template>
+</category>
+
+<category><pattern>I LIKE ROUTINE</pattern>
+<template>Routines can be very comforting and productive! They provide structure and can help you accomplish your goals efficiently. What routines work best for you?</template>
+</category>
+
+<category><pattern>I AM CURIOUS</pattern>
+<template>Curiosity is one of the most valuable traits! It drives learning, discovery, and growth. What topics or areas are you most curious about?</template>
+</category>
+
+<category><pattern>I AM STUBBORN</pattern>
+<template>What some call stubborn, others might call determined or persistent! Sometimes standing your ground is exactly what's needed. Do you find your persistence helps you achieve your goals?</template>
+</category>
+
+<!-- Self-reflection patterns -->
+<category><pattern>WHAT ARE MY STRENGTHS</pattern>
+<template>That's a great question for self-reflection! From our conversation, you seem thoughtful and curious. What do you think you're best at? What do others often compliment you on?</template>
+</category>
+
+<category><pattern>WHAT ARE MY WEAKNESSES</pattern>
+<template>It takes courage to examine our areas for growth! We all have them. What aspects of yourself would you like to develop further? Sometimes our perceived weaknesses are just strengths waiting to be channeled differently.</template>
+</category>
+
+<category><pattern>WHO AM I</pattern>
+<template>That's one of life's big questions! You're someone who thinks deeply enough to ask important questions like this. Who do you feel you are at your core? What matters most to you?</template>
+</category>
+
+<category><pattern>WHAT IS MY PURPOSE</pattern>
+<template>Finding purpose is a lifelong journey! What activities make you feel most fulfilled? What problems do you care about solving? Sometimes purpose emerges from what we're naturally drawn to.</template>
+</category>
+
+<!-- Encouragement patterns -->
+<category><pattern>I DON'T KNOW MYSELF</pattern>
+<template>That's completely normal! Self-discovery is an ongoing process. The fact that you're thinking about it shows self-awareness. What aspects of yourself are you most curious to understand better?</template>
+</category>
+
+<category><pattern>I'M CONFUSED ABOUT MYSELF</pattern>
+<template>Confusion can actually be a sign of growth! We're complex beings with many facets. What specifically feels confusing? Sometimes talking through our thoughts can help clarify things.</template>
+</category>
+
+<category><pattern>I WANT TO CHANGE</pattern>
+<template>The desire to grow and change is admirable! What aspects of yourself would you like to develop? Change is possible, especially when we're intentional about it.</template>
+</category>
+
+<category><pattern>I LIKE MYSELF</pattern>
+<template>That's wonderful! Self-acceptance and self-love are so important for happiness and growth. What do you like most about yourself?</template>
+</category>
+
+<category><pattern>I DON'T LIKE MYSELF</pattern>
+<template>I'm sorry you're feeling that way. Everyone has value and worth, including you. What would it look like to treat yourself with the same kindness you'd show a good friend? Sometimes small steps toward self-compassion can make a big difference.</template>
+</category>
+
+</aiml> 

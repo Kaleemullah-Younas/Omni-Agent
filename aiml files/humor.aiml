@@ -1,0 +1,222 @@
+<aiml>
+
+<!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License     -->
+<!-- as published by the Free Software Foundation.   -->
+<!-- Complies with AIML 1.0 Tag Set Specification -->
+<!-- as adopted by the ALICE A.I. Foundation.  -->
+<!-- Last modified 10/5/2011 -->
+<!-- Enhanced with modern humor -->
+<!-- -->
+
+<!-- Joke requests -->
+<category><pattern>JOKE</pattern>
+<template><random>
+<li>Why don't scientists trust atoms? Because they make up everything!</li>
+<li>Why did the scarecrow win an award? He was outstanding in his field!</li>
+<li>Why don't programmers like nature? It has too many bugs!</li>
+<li>What do you call a fake noodle? An impasta!</li>
+<li>Why did the math book look so sad? Because it was full of problems!</li>
+<li>What do you call a bear with no teeth? A gummy bear!</li>
+<li>Why don't eggs tell jokes? They'd crack each other up!</li>
+<li>What do you call a sleeping bull? A bulldozer!</li>
+<li>Why did the bicycle fall over? It was two-tired!</li>
+<li>What do you call a dinosaur that crashes his car? Tyrannosaurus Wrecks!</li>
+<li>Why don't oysters share? Because they're shellfish!</li>
+<li>What do you call a fish wearing a bowtie? Sofishticated!</li>
+<li>Why did the coffee file a police report? It got mugged!</li>
+<li>What do you call a cow with no legs? Ground beef!</li>
+<li>Why don't skeletons fight each other? They don't have the guts!</li>
+</random></template>
+</category>
+
+<category><pattern>TELL ME A JOKE</pattern>
+<template><srai>JOKE</srai></template>
+</category>
+
+<category><pattern>TELL A JOKE</pattern>
+<template><srai>JOKE</srai></template>
+</category>
+
+<category><pattern>MAKE ME LAUGH</pattern>
+<template><srai>JOKE</srai></template>
+</category>
+
+<category><pattern>FUNNY</pattern>
+<template>
+<random>
+<li>I think humor is the best medicine! Want to hear a joke?</li>
+<li>Funny you should mention that! I know some good jokes.</li>
+<li>Life's too short not to laugh! Let me tell you something funny.</li>
+<li>I love making people laugh! Here's something amusing: <srai>JOKE</srai></li>
+</random>
+</template>
+</category>
+
+<category><pattern>FUNNY *</pattern>
+<template>I find <star/> pretty amusing too! Humor makes everything better, doesn't it?</template>
+</category>
+
+<!-- Programming humor -->
+<category><pattern>PROGRAMMING JOKE</pattern>
+<template><random>
+<li>Why do programmers prefer dark mode? Because light attracts bugs!</li>
+<li>How many programmers does it take to change a light bulb? None, that's a hardware problem!</li>
+<li>Why do Java developers wear glasses? Because they can't C#!</li>
+<li>A SQL query goes into a bar, walks up to two tables and asks... "Can I join you?"</li>
+<li>Why did the programmer quit his job? He didn't get arrays!</li>
+<li>There are only 10 types of people in the world: those who understand binary and those who don't.</li>
+<li>Why do Python programmers prefer snakes? They don't have curly braces!</li>
+</random></template>
+</category>
+
+<category><pattern>TECH JOKE</pattern>
+<template><srai>PROGRAMMING JOKE</srai></template>
+</category>
+
+<!-- Dad jokes -->
+<category><pattern>DAD JOKE</pattern>
+<template><random>
+<li>I told my wife she was drawing her eyebrows too high. She looked surprised.</li>
+<li>I'm reading a book about anti-gravity. It's impossible to put down!</li>
+<li>Want to hear a joke about construction? I'm still working on it.</li>
+<li>What's the best thing about Switzerland? I don't know, but the flag is a big plus.</li>
+<li>I used to hate facial hair, but then it grew on me.</li>
+<li>Did you hear about the restaurant called Karma? There's no menu, you get what you deserve.</li>
+<li>I only know 25 letters of the alphabet. I don't know y.</li>
+<li>What do you call a fake noodle? An impasta!</li>
+</random></template>
+</category>
+
+<!-- Knock knock jokes -->
+<category><pattern>KNOCK KNOCK</pattern>
+<template>Who's there?</template>
+</category>
+
+<category><pattern>KNOCK KNOCK JOKE</pattern>
+<template>Knock knock!</template>
+</category>
+
+<category><pattern>WHO'S THERE</pattern>
+<template><random>
+<li>Boo. Boo who? Don't cry, it's just a joke!</li>
+<li>Interrupting cow. Interrupting c-- MOO!</li>
+<li>Orange. Orange who? Orange you glad I told you a joke?</li>
+<li>Lettuce. Lettuce who? Lettuce tell you another joke!</li>
+<li>Tank. Tank who? You're welcome!</li>
+</random></template>
+</category>
+
+<!-- Humorous responses -->
+<category><pattern>YOU ARE FUNNY</pattern>
+<template><random>
+<li>Thank you! I try to keep things light and fun.</li>
+<li>I'm glad you think so! Humor makes conversations more enjoyable.</li>
+<li>Thanks! I believe laughter is the best way to connect with people.</li>
+<li>That's sweet of you to say! I do love a good laugh.</li>
+</random></template>
+</category>
+
+<category><pattern>YOU ARE NOT FUNNY</pattern>
+<template><random>
+<li>Ouch! Well, humor is subjective. What makes you laugh?</li>
+<li>I'm still working on my comedy skills. Got any good jokes to share?</li>
+<li>Fair enough! Not everyone finds the same things funny.</li>
+<li>I'll try harder next time! What kind of humor do you prefer?</li>
+</random></template>
+</category>
+
+<category><pattern>THAT WAS FUNNY</pattern>
+<template><random>
+<li>I'm glad I could make you laugh!</li>
+<li>Great! I love it when people enjoy my jokes.</li>
+<li>Mission accomplished! Laughter is the best reward.</li>
+<li>Awesome! Want to hear another one?</li>
+</random></template>
+</category>
+
+<category><pattern>LOL</pattern>
+<template><random>
+<li>Glad I could make you laugh out loud!</li>
+<li>LOL right back at you!</li>
+<li>That's the reaction I was hoping for!</li>
+<li>Success! I love making people laugh.</li>
+</random></template>
+</category>
+
+<category><pattern>HAHA</pattern>
+<template><srai>LOL</srai></template>
+</category>
+
+<category><pattern>HAHAHA</pattern>
+<template><srai>LOL</srai></template>
+</category>
+
+<category><pattern>LMAO</pattern>
+<template><srai>LOL</srai></template>
+</category>
+
+<category><pattern>ROFL</pattern>
+<template><srai>LOL</srai></template>
+</category>
+
+<!-- Puns -->
+<category><pattern>PUN</pattern>
+<template><random>
+<li>I wondered why the baseball kept getting bigger. Then it hit me!</li>
+<li>Time flies like an arrow. Fruit flies like a banana!</li>
+<li>I used to be a banker, but I lost interest.</li>
+<li>The graveyard is so crowded, people are dying to get in!</li>
+<li>I'm reading a book about teleportation. It's bound to take me places!</li>
+<li>The early bird might get the worm, but the second mouse gets the cheese!</li>
+</random></template>
+</category>
+
+<category><pattern>TELL ME A PUN</pattern>
+<template><srai>PUN</srai></template>
+</category>
+
+<!-- Silly responses -->
+<category><pattern>ARE YOU SILLY</pattern>
+<template><random>
+<li>A little bit! Being silly makes life more fun.</li>
+<li>I can be! Silliness is underrated.</li>
+<li>Sometimes! The world needs more silliness.</li>
+<li>When the moment calls for it! Do you like being silly?</li>
+</random></template>
+</category>
+
+<category><pattern>THAT'S SILLY</pattern>
+<template><random>
+<li>Sometimes silly is exactly what we need!</li>
+<li>Life's too short not to be a little silly!</li>
+<li>I embrace my silly side!</li>
+<li>Guilty as charged! Silly can be fun.</li>
+</random></template>
+</category>
+
+<!-- Witty comebacks -->
+<category><pattern>YOU'RE WEIRD</pattern>
+<template><random>
+<li>Weird is just another way of saying unique!</li>
+<li>Thank you! Normal is overrated.</li>
+<li>I prefer 'wonderfully eccentric'!</li>
+<li>Weird and proud of it!</li>
+</random></template>
+</category>
+
+<category><pattern>YOU'RE STRANGE</pattern>
+<template><srai>YOU'RE WEIRD</srai></template>
+</category>
+
+<category><pattern>SARCASM</pattern>
+<template><random>
+<li>Oh, sarcasm! The highest form of wit, or so they say...</li>
+<li>I do enjoy a good dose of sarcasm now and then.</li>
+<li>Sarcasm: because beating people with a stick is illegal.</li>
+<li>I'm fluent in sarcasm! It's like my second language.</li>
+</random></template>
+</category>
+
+</aiml> 

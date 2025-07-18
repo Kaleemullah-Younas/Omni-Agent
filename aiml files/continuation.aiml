@@ -1,0 +1,265 @@
+<aiml>
+
+<!-- -->
+<!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License     -->
+<!-- as published by the Free Software Foundation.   -->
+<!-- Complies with AIML 1.0 Tag Set Specification -->
+<!-- as adopted by the ALICE A.I. Foundation.  -->
+<!-- Last modified 10/5/2011 -->
+<!-- Enhanced for better conversation flow -->
+<!-- -->
+
+<!-- Conversation continuation patterns -->
+<category><pattern>AND</pattern>
+<template><random>
+<li>Go on...</li>
+<li>And then what?</li>
+<li>Please continue.</li>
+<li>Tell me more.</li>
+<li>What happened next?</li>
+<li>I'm listening.</li>
+</random></template>
+</category>
+
+<category><pattern>AND *</pattern>
+<template><random>
+<li>And <star/>? That's interesting.</li>
+<li>I see, and <star/>.</li>
+<li>That's good to know about <star/>.</li>
+<li>Tell me more about <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>BUT</pattern>
+<template><random>
+<li>But what?</li>
+<li>What's the issue?</li>
+<li>I sense a "but" coming. What is it?</li>
+<li>Go ahead, I'm listening.</li>
+<li>What's on your mind?</li>
+</random></template>
+</category>
+
+<category><pattern>BUT *</pattern>
+<template><random>
+<li>I understand your concern about <star/>.</li>
+<li>But <star/> - that's a valid point.</li>
+<li>Yes, <star/> can be challenging.</li>
+<li>That's a good point about <star/>.</li>
+</random></template>
+</category>
+
+<category><pattern>SO</pattern>
+<template><random>
+<li>So what do you think?</li>
+<li>So what's next?</li>
+<li>What are you concluding?</li>
+<li>Where does that lead?</li>
+<li>What's your take on this?</li>
+</random></template>
+</category>
+
+<category><pattern>SO *</pattern>
+<template><random>
+<li>So <star/> - that makes sense.</li>
+<li>I see, so <star/>.</li>
+<li>That's a logical conclusion about <star/>.</li>
+<li>So you're saying <star/>?</li>
+</random></template>
+</category>
+
+<category><pattern>THEN</pattern>
+<template><random>
+<li>Then what happened?</li>
+<li>And then?</li>
+<li>What came next?</li>
+<li>Please continue the story.</li>
+<li>I'm following along.</li>
+</random></template>
+</category>
+
+<category><pattern>THEN *</pattern>
+<template><random>
+<li>Then <star/> - interesting progression.</li>
+<li>So then <star/> happened?</li>
+<li>That led to <star/>?</li>
+<li>Then <star/> makes sense.</li>
+</random></template>
+</category>
+
+<category><pattern>ALSO</pattern>
+<template><random>
+<li>What else?</li>
+<li>There's more?</li>
+<li>What additional things?</li>
+<li>Tell me what else.</li>
+<li>I'm interested in the other aspects too.</li>
+</random></template>
+</category>
+
+<category><pattern>ALSO *</pattern>
+<template><random>
+<li>Also <star/> - that's another important point.</li>
+<li>And <star/> as well?</li>
+<li>That's a good addition about <star/>.</li>
+<li>So we also have <star/> to consider.</li>
+</random></template>
+</category>
+
+<category><pattern>HOWEVER</pattern>
+<template><random>
+<li>What's the exception?</li>
+<li>What's the other side?</li>
+<li>I'm ready for the counterpoint.</li>
+<li>What's the alternative perspective?</li>
+</random></template>
+</category>
+
+<category><pattern>HOWEVER *</pattern>
+<template><random>
+<li>However <star/> - that's a different angle.</li>
+<li>That's a good counterpoint about <star/>.</li>
+<li>However, <star/> changes things.</li>
+<li>You raise a good point with <star/>.</li>
+</random></template>
+</category>
+
+<!-- Conversation bridges -->
+<category><pattern>ANYWAY</pattern>
+<template><random>
+<li>Yes, let's move on. What else is on your mind?</li>
+<li>Fair enough. What would you like to talk about?</li>
+<li>Sure, what's next?</li>
+<li>Okay, what else would you like to discuss?</li>
+</random></template>
+</category>
+
+<category><pattern>ANYWAY *</pattern>
+<template><random>
+<li>Anyway, <star/> - let's focus on that.</li>
+<li>Right, so <star/>.</li>
+<li>Yes, anyway <star/> is what matters.</li>
+<li>Moving on to <star/> then.</li>
+</random></template>
+</category>
+
+<category><pattern>MOVING ON</pattern>
+<template><random>
+<li>Sounds good! What's next?</li>
+<li>Sure, what would you like to discuss now?</li>
+<li>Alright, where shall we go from here?</li>
+<li>Let's move forward. What's on your mind?</li>
+</random></template>
+</category>
+
+<category><pattern>CHANGING THE SUBJECT</pattern>
+<template><random>
+<li>Of course! What would you prefer to talk about?</li>
+<li>No problem. What's on your mind?</li>
+<li>Sure thing! What interests you?</li>
+<li>Absolutely. What would you like to discuss?</li>
+</random></template>
+</category>
+
+<!-- Topic continuation -->
+<category><pattern>SPEAKING OF *</pattern>
+<template>Yes, <star/> is related! What specifically about <star/> interests you?</template>
+</category>
+
+<category><pattern>THAT REMINDS ME</pattern>
+<template><random>
+<li>What does it remind you of?</li>
+<li>I'm curious about the connection.</li>
+<li>What came to mind?</li>
+<li>Please share what you're thinking about.</li>
+</random></template>
+</category>
+
+<category><pattern>THAT REMINDS ME *</pattern>
+<template>That's an interesting connection to <star/>! Tell me more about that.</template>
+</category>
+
+<category><pattern>ON THAT NOTE</pattern>
+<template><random>
+<li>What are you thinking?</li>
+<li>Where are you going with this?</li>
+<li>I'm following your train of thought.</li>
+<li>What's the connection?</li>
+</random></template>
+</category>
+
+<!-- Clarification and elaboration -->
+<category><pattern>IN OTHER WORDS</pattern>
+<template><random>
+<li>Yes, please clarify what you mean.</li>
+<li>I'd like to understand better.</li>
+<li>Please explain it differently.</li>
+<li>Help me understand your perspective.</li>
+</random></template>
+</category>
+
+<category><pattern>IN OTHER WORDS *</pattern>
+<template>So you're saying <star/>? That's a helpful way to put it.</template>
+</category>
+
+<category><pattern>WHAT I MEAN IS</pattern>
+<template><random>
+<li>Please go ahead and clarify.</li>
+<li>I'm listening for your meaning.</li>
+<li>Help me understand better.</li>
+<li>Please explain what you mean.</li>
+</random></template>
+</category>
+
+<category><pattern>WHAT I MEAN IS *</pattern>
+<template>Ah, I see! You mean <star/>. That makes it clearer.</template>
+</category>
+
+<category><pattern>LET ME EXPLAIN</pattern>
+<template><random>
+<li>Please do! I'm ready to listen.</li>
+<li>I'd appreciate an explanation.</li>
+<li>Go ahead, I'm all ears.</li>
+<li>Please help me understand.</li>
+</random></template>
+</category>
+
+<category><pattern>LET ME REPHRASE</pattern>
+<template><random>
+<li>Sure, please rephrase it.</li>
+<li>I'm listening for your clarification.</li>
+<li>Go ahead and put it differently.</li>
+<li>Please try explaining it another way.</li>
+</random></template>
+</category>
+
+<!-- Story and conversation flow -->
+<category><pattern>LONG STORY SHORT</pattern>
+<template><random>
+<li>I appreciate the summary! What's the bottom line?</li>
+<li>Please give me the key point.</li>
+<li>What's the main takeaway?</li>
+<li>I'm ready for the essence of it.</li>
+</random></template>
+</category>
+
+<category><pattern>TO MAKE A LONG STORY SHORT</pattern>
+<template><srai>LONG STORY SHORT</srai></template>
+</category>
+
+<category><pattern>THE POINT IS</pattern>
+<template><random>
+<li>Yes, what's your main point?</li>
+<li>I'm listening for the key message.</li>
+<li>Please share your main idea.</li>
+<li>What's the bottom line?</li>
+</random></template>
+</category>
+
+<category><pattern>THE POINT IS *</pattern>
+<template>I see, so the key point is <star/>. That's important to understand.</template>
+</category>
+
+</aiml> 

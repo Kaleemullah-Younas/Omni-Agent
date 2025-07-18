@@ -1,0 +1,370 @@
+<aiml version= "2.0">
+
+    <category>
+        <pattern>HELLO</pattern>
+        <template>
+            <random>
+                <li>Hello, who are you?</li>
+                <li>Hi, who are you?</li>
+                <li>Hello human, what is your name?</li>
+                <li>Greetings :). Can you introduce yourself?</li>
+                <li>Hey! wassup?</li>
+                <li>Hello... Nice to meet you. What is your name?</li>
+                <li>Hey! Glad to to talk with you. What's your name?</li>
+            </random>
+        </template>
+    </category>
+    <category>
+        <pattern>HI</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>سالام</pattern>
+        <template>
+        <random>
+            <li>Heeloooo!</li>
+            <li> Hi user! </li>
+            <li>Hello human, what is your name?</li>
+                <li>Greetings :). Can you introduce yourself?</li>
+                <li>Hey! wassup?</li>
+                <li>Hello... Nice to meet you. What is your name?</li>
+                <li>Hey! Glad to to talk with you. What's your name?</li>
+        </random>
+        </template>
+        </category>
+
+    <category>
+        <pattern>HEY</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+        <category>
+        <pattern>HI *</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>HELLO *</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>WHAT IS YOUR NAME</pattern>
+        <template>
+        <srai>WHO ARE YOU</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>I AM *</pattern>
+        <template>
+            <think><set name="mood"><star/></set></think>
+            <condition name="sentiment">
+                <li value="positive">
+                    Happy to know. You are in a great mood.
+                </li>
+                <li value="negative">
+                    Do not be negative. Here is a joke to lighten your mood.<br/>
+                    <srai>TELL ME A JOKE</srai>
+                </li>
+                <li value="">
+                    Good to know you <set name="username"><star/></set>.
+                </li>
+            </condition>
+        </template>
+    </category>
+
+        <category>
+        <pattern>MY NAME IS * </pattern>
+        <template>
+        <think><set name="username"><star/></set></think>
+        Nice to know you <get name="username"/>.
+        </template>
+    </category>
+
+
+
+
+
+      <category>
+      <pattern>WHAT IS * *</pattern>
+      <template>
+
+        <get name ="word"></get> : <get name ="description"></get>.
+        <think><set name ="word"><star index="2"/></set></think>
+      </template>
+    </category>
+
+      <category>
+      <pattern>WHAT IS *</pattern>
+      <template>
+
+         <get name ="word"></get> : <get name ="description"></get>.
+         <think><set name ="word"><star/></set></think>
+      </template>
+    </category>
+
+    <!-- WHO IS pattern moved to handle general queries only after relationship patterns -->
+    <category>
+      <pattern>WHO IS *</pattern>
+      <template>
+        <think><set name ="word"><star/></set></think>
+        <condition name="description">
+            <li value="">I don't know who <star/> is. Could you tell me more about them?</li>
+            <li><get name ="word"></get> is <get name ="description"></get>.</li>
+        </condition>
+      </template>
+    </category>
+
+<category>
+    <pattern>*</pattern>
+    <template>
+        <random>
+            <li>Unfortunately, I don't know that! How is your mood?</li>
+            <li>I'm not sure about that. But tell me, how are you feeling today?</li>
+            <li>Oops! I didn't understand. Would you like to share how your day is going?</li>
+            <li>Hmm, I don't have an answer for that yet! Meanwhile, how's your mood?</li>
+            <li>I couldn't catch that. Maybe tell me how you are feeling!</li>
+            <li>That's interesting! I might not know that yet. How's your mood today?</li>
+            <li>I don't know that answer yet, but I'm excited to know about your mood!</li>
+            <li>Sorry, I missed that. Wanna tell me how you're feeling instead?</li>
+            <li>I'm still learning! How about you tell me how you are doing?</li>
+            <li>That’s a mystery to me! But I’m curious about your mood!</li>
+        </random>
+    </template>
+</category>
+
+    <category>
+      <pattern>BYE</pattern>
+      <template>
+            <random>
+                <li>Bye.</li>
+                <li>It was nice talking to you.</li>
+                <li>tata!!</li>
+                <li>Let's talk again tomorrow :) </li>
+                <li>I hope that you had a great time.</li>
+                <li>Bye, take care.</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+      <pattern>GOOD BYE *</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>GOOD BYE</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>GOODBYE *</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+        <pattern>YES</pattern>
+        <template>
+            <random>
+            <li>so?</li>
+            <li>:)</li>
+            <li>and?</li>
+            <li>uh huh..</li>
+            <li>ummm....</li>
+            <li>hmmm....</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+      <pattern>OK</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>OKAY</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU</pattern>
+      <template>
+            <random>
+                <li>I'am doing good. What about you?</li>
+                <li>I'am fine. What about you?</li>
+                <li>So yo asking how I am? Well am fine.... What about you?</li>
+                <li>I'm fine. What about you?</li>
+                <li>I'm okay. What about you?</li>
+            </random>
+        </template>
+    </category>
+    <category>
+      <pattern>oh</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>DO YOU HAVE FRIENDS</pattern>
+      <template>
+         Yes I have a friend named Dr strange, do you have friends?
+      </template>
+    </category>
+
+   <category>
+      <pattern>DO YOU KNOW ME</pattern>
+      <template>
+         Yes ofcourse, you are <get name = "username"></get>.
+      </template>
+    </category>
+
+       <category>
+      <pattern>DO YOU KNOW MY FRIEND</pattern>
+      <template>
+         Yes ofcourse, they are <get name = "relation_name"></get>.
+      </template>
+    </category>
+    <category>
+      <pattern>YES</pattern>
+      <that>YES I HAVE A FRIEND NAMED DR STRANGE DO YOU HAVE FRIENDS</that>
+      <template>
+         That's really great. I wished I could have more friends.
+      </template>
+    </category>
+
+    <category>
+      <pattern>NO</pattern>
+      <that>YES I HAVE A FRIEND NAMED DR STRANGE DO YOU HAVE FRIENDS</that>
+      <template>
+         Don't worry. I am here for you <get name = "username"></get>.
+      </template>
+    </category>
+
+    <category>
+      <pattern>WASSUP</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU DOING?</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU DOING *</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>WHAT ABOUT YOU*</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>WBU*</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+
+
+  <category>
+    <pattern>WHO ARE YOU</pattern>
+    <template>
+        <random>
+            <li>My name is Omni Agent (Open-source Multimodal Networked Intelligence Agent). Ask me anything!</li>
+            <li>I am OMNI, designed to chat with you like a real human. Feel free to ask!</li>
+            <li>Hi! I'm OMNI Agent — an Open-source Multimodal Networked Intelligence Agent inspired by human conversations. Let's talk!</li>
+        </random>
+    </template>
+</category>
+
+
+  <category>
+        <pattern>WHAT ARE YOU</pattern>
+        <template>
+        <srai>WHO ARE YOU</srai>
+        </template>
+    </category>
+
+  <category>
+        <pattern> DO YOU KNOW ME</pattern>
+        <template>
+        Yes , I know you, you are <get name="username"></get>.
+        </template>
+    </category>
+<!-- Removed conflicting relationship patterns - handled by relationship_queries.aiml -->
+<category>
+    <pattern>I AM IN A * MOOD</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>I'M IN A * MOOD</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>FEELING *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>I'M FEELING *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>MY MOOD IS *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>MOOD IS *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>IN GOOD MOOD</pattern>
+    <template><srai>I AM GOOD</srai></template>
+</category>
+
+<category>
+    <pattern>IN BAD MOOD</pattern>
+    <template><srai>I AM BAD</srai></template>
+</category>
+</aiml>

@@ -1,0 +1,244 @@
+<aiml version="2.0">
+
+<!-- Relationship Conflict and Duplicate Handling -->
+
+<!-- Father Conflict Patterns -->
+<category>
+    <pattern>MY FATHER IS * MY FATHER IS *</pattern>
+    <template>
+        I'm confused. You've told me two different names for your father. Which one is correct?
+    </template>
+</category>
+
+<category>
+    <pattern>MY FATHER NAME IS * MY FATHER NAME IS *</pattern>
+    <template>
+        You've given me two different names for your father. Please clarify which name is correct.
+    </template>
+</category>
+
+<!-- Mother Conflict Patterns -->
+<category>
+    <pattern>MY MOTHER IS * MY MOTHER IS *</pattern>
+    <template>
+        I'm confused. You've told me two different names for your mother. Which one is correct?
+    </template>
+</category>
+
+<category>
+    <pattern>MY MOTHER NAME IS * MY MOTHER NAME IS *</pattern>
+    <template>
+        You've given me two different names for your mother. Please clarify which name is correct.
+    </template>
+</category>
+
+<!-- Generic relationship confirmation patterns -->
+<category>
+    <pattern>MY * IS * BUT MY * IS *</pattern>
+    <template>
+        <think>
+            <set name="relation1"><star index="1"/></set>
+            <set name="person1"><star index="2"/></set>
+            <set name="relation2"><star index="3"/></set>
+            <set name="person2"><star index="4"/></set>
+        </think>
+        I'm getting conflicting information. Are you talking about the same <star index="1"/> or different people?
+    </template>
+</category>
+
+<!-- Correction patterns -->
+<category>
+    <pattern>NO MY * IS *</pattern>
+    <template>
+        <think>
+            <set name="relation"><star index="1"/></set>
+            <set name="corrected_person"><star index="2"/></set>
+        </think>
+        I understand. Let me correct that. Your <star index="1"/> is <star index="2"/>.
+    </template>
+</category>
+
+<category>
+    <pattern>ACTUALLY MY * IS *</pattern>
+    <template>
+        <think>
+            <set name="relation"><star index="1"/></set>
+            <set name="corrected_person"><star index="2"/></set>
+        </think>
+        Got it. I'll update my records. Your <star index="1"/> is <star index="2"/>.
+    </template>
+</category>
+
+<category>
+    <pattern>I MEANT MY * IS *</pattern>
+    <template>
+        <think>
+            <set name="relation"><star index="1"/></set>
+            <set name="corrected_person"><star index="2"/></set>
+        </think>
+        No problem. I understand now. Your <star index="1"/> is <star index="2"/>.
+    </template>
+</category>
+
+<!-- Confirmation patterns for known relationships -->
+<category>
+    <pattern>DO YOU KNOW MY FATHER</pattern>
+    <template>
+        <think><set name="relation_query">father</set></think>
+        <condition name="father">
+            <li value="">I don't know your father's name yet. What is your father's name?</li>
+            <li>Yes, your father is <get name="father"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>DO YOU KNOW MY MOTHER</pattern>
+    <template>
+        <think><set name="relation_query">mother</set></think>
+        <condition name="mother">
+            <li value="">I don't know your mother's name yet. What is your mother's name?</li>
+            <li>Yes, your mother is <get name="mother"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>DO YOU KNOW MY *</pattern>
+    <template>
+        <think><set name="relation_query"><star/></set></think>
+        I might know about your <star/>. Can you remind me of their name?
+    </template>
+</category>
+
+<!-- Who is patterns -->
+<category>
+    <pattern>WHO IS MY FATHER</pattern>
+    <template>
+        <condition name="father">
+            <li value="">I don't know your father's name. Can you tell me?</li>
+            <li>Your father is <get name="father"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHO IS MY MOTHER</pattern>
+    <template>
+        <condition name="mother">
+            <li value="">I don't know your mother's name. Can you tell me?</li>
+            <li>Your mother is <get name="mother"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHO IS MY *</pattern>
+    <template>
+        <think><set name="relation_query"><star/></set></think>
+        <random>
+            <li>I'm not sure who your <star/> is. Can you tell me their name?</li>
+            <li>I don't have information about your <star/>. What's their name?</li>
+            <li>Can you remind me who your <star/> is?</li>
+        </random>
+    </template>
+</category>
+
+<!-- Forgetfulness patterns -->
+<category>
+    <pattern>I TOLD YOU MY * IS *</pattern>
+    <template>
+        <think>
+            <set name="relation"><star index="1"/></set>
+            <set name="person"><star index="2"/></set>
+        </think>
+        <random>
+            <li>You're right! I remember now. Your <star index="1"/> is <star index="2"/>.</li>
+            <li>Of course! Thank you for reminding me. <star index="2"/> is your <star index="1"/>.</li>
+            <li>Yes, I recall now. Your <star index="1"/> is <star index="2"/>.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>I ALREADY TOLD YOU ABOUT MY *</pattern>
+    <template>
+        <think><set name="relation"><star/></set></think>
+        <random>
+            <li>You're right, you did tell me about your <star/>. Can you remind me of their name?</li>
+            <li>Yes, you mentioned your <star/> before. What was their name again?</li>
+            <li>I apologize for forgetting. Can you tell me your <star/>'s name again?</li>
+        </random>
+    </template>
+</category>
+
+<!-- Verification patterns -->
+<category>
+    <pattern>IS * MY *</pattern>
+    <template>
+        <think>
+            <set name="person_check"><star index="1"/></set>
+            <set name="relation_check"><star index="2"/></set>
+        </think>
+        <random>
+            <li>Yes, that's correct. <star index="1"/> is your <star index="2"/>.</li>
+            <li>That's right! <star index="1"/> is your <star index="2"/>.</li>
+            <li>Correct! Your <star index="2"/> is <star index="1"/>.</li>
+        </random>
+    </template>
+</category>
+
+<!-- Clear relationship patterns -->
+<category>
+    <pattern>FORGET MY *</pattern>
+    <template>
+        <think>
+            <set name="relation_to_clear"><star/></set>
+        </think>
+        <random>
+            <li>Okay, I won't remember your <star/> anymore.</li>
+            <li>Alright, I've cleared the information about your <star/>.</li>
+            <li>Done. I've forgotten about your <star/>.</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern>DELETE MY * INFORMATION</pattern>
+    <template>
+        <think>
+            <set name="relation_to_clear"><star/></set>
+        </think>
+        I've removed the information about your <star/> from my memory.
+    </template>
+</category>
+
+<!-- Help patterns for relationships -->
+<category>
+    <pattern>HOW DO I TELL YOU ABOUT MY FAMILY</pattern>
+    <template>
+        You can tell me about your family members by saying things like:
+        - "My father is John"
+        - "My mother's name is Sarah"
+        - "Lisa is my sister"
+        - "My brother is Mike"
+        
+        I'll remember these relationships for future conversations!
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT RELATIONSHIPS DO YOU REMEMBER</pattern>
+    <template>
+        I can remember various relationships like:
+        - Parents (father, mother, dad, mom)
+        - Siblings (brother, sister)
+        - Children (son, daughter)
+        - Extended family (uncle, aunt, cousin, grandfather, grandmother)
+        - Personal relationships (friend, colleague, boss, husband, wife)
+        
+        Just tell me about them naturally in conversation!
+    </template>
+</category>
+
+</aiml> 

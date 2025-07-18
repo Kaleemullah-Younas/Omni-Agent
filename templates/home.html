@@ -1,0 +1,1308 @@
+<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+<!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<!------ Include the above in your HEAD tag ---------->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNI Agent - Chat Interface</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-big.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-big.png') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3748;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        #frame {
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            min-height: 600px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            display: flex;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        /* =============== SIDEBAR =============== */
+        #sidepanel {
+            width: 320px;
+            background: linear-gradient(180deg, #1a365d 0%, #2d5aa0 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        #profile {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #profile .wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #4299e1;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        #profile img:hover {
+            border-color: #63b3ed;
+            transform: scale(1.05);
+        }
+
+        #profile .user-info {
+            flex: 1;
+        }
+
+        #profile .user-info p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        #profile .user-info a {
+            color: #90cdf4;
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            transition: color 0.3s ease;
+        }
+
+        #profile .user-info a:hover {
+            color: #63b3ed;
+        }
+
+        /* =============== CONTACTS =============== */
+        #contacts {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        #contacts ul {
+            list-style: none;
+        }
+
+        #contacts .contact {
+            padding: 20px 25px;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        #contacts .contact:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #contacts .contact .wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #contacts .contact img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #contacts .contact .meta .name {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        #contacts .contact .meta .preview {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        #contacts .contact-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: relative;
+            margin-left: auto;
+        }
+
+        #contacts .contact-status.online {
+            background: #48bb78;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
+        }
+
+        /* =============== BOTTOM BAR =============== */
+        #bottom-bar {
+            padding: 20px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        #bottom-bar button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+
+        #login {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #login:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        #signup {
+            background: #4299e1;
+            color: #ffffff;
+        }
+
+        #signup:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+
+        #logout {
+            background: #e53e3e;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        #logout:hover {
+            background: #c53030;
+            transform: translateY(-1px);
+        }
+
+        /* =============== CONTENT AREA =============== */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f7fafc;
+        }
+
+        /* =============== CONTACT PROFILE =============== */
+        .contact-profile {
+            padding: 25px 30px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-profile img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .contact-profile p {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1a365d;
+        }
+
+        /* =============== MESSAGES =============== */
+        .messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        .messages ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .messages li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            max-width: 75%;
+        }
+
+        .messages li.sent {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .messages li.replies {
+            align-self: flex-start;
+        }
+
+        .messages li img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .messages li p {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .messages li.sent p {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: #ffffff;
+            border-bottom-right-radius: 5px;
+        }
+
+        .messages li.replies p {
+            background: #ffffff;
+            color: #2d3748;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* =============== MESSAGE INPUT =============== */
+        .message-input {
+            padding: 25px 30px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .message-input .wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f7fafc;
+            border-radius: 25px;
+            padding: 5px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .message-input .wrap:focus-within {
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        .message-input input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 15px 20px;
+            font-size: 14px;
+            color: #2d3748;
+            outline: none;
+        }
+
+        .message-input input::placeholder {
+            color: #a0aec0;
+        }
+
+        .message-input input:disabled {
+            background: #f7fafc;
+            color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .message-input button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .message-input button:disabled:hover {
+            background: #e2e8f0 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .message-input .submit:disabled:hover {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%) !important;
+        }
+
+        .message-input .mic-btn:disabled:hover {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%) !important;
+        }
+
+        .message-input button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .message-input button:hover {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5aa0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
+        }
+
+        .message-input button:active {
+            transform: translateY(0);
+        }
+
+        .message-input .mic-btn {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .message-input .mic-btn:hover {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .message-input .mic-btn.recording {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .speaker-btn {
+            background: none;
+            border: none;
+            color: #4299e1;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .speaker-btn:hover {
+            background: rgba(66, 153, 225, 0.1);
+            transform: scale(1.1);
+        }
+
+        .speaker-btn.speaking {
+            color: #e53e3e;
+            animation: pulse 1s infinite;
+        }
+
+        /* =============== THINKING INDICATOR =============== */
+        .thinking-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 75%;
+            align-self: flex-start;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .thinking-indicator img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .thinking-bubble {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .thinking-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .thinking-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4299e1;
+            animation: thinking-bounce 1.4s infinite ease-in-out;
+        }
+
+        .thinking-dot:nth-child(1) { animation-delay: 0s; }
+        .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+        .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes thinking-bounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .brain-icon {
+            color: #4299e1;
+            animation: brain-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes brain-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* =============== RESPONSIVE =============== */
+        @media (max-width: 768px) {
+            #frame {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            #sidepanel {
+                width: 80px;
+            }
+
+            #profile .user-info,
+            #contacts .contact .meta,
+            #bottom-bar {
+                display: none;
+            }
+
+            #profile {
+                padding: 20px 15px;
+                text-align: center;
+            }
+
+            #contacts .contact {
+                padding: 15px;
+                text-align: center;
+            }
+
+            .messages {
+                padding: 20px 15px;
+            }
+
+            .message-input {
+                padding: 15px;
+            }
+        }
+
+        /* =============== ANIMATIONS =============== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .messages li {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* =============== STATUS INDICATORS =============== */
+        .status-online { color: #48bb78; }
+        .status-away { color: #ed8936; }
+        .status-busy { color: #f56565; }
+        .status-offline { color: #a0aec0; }
+
+        /* =============== HARDWARE STATUS =============== */
+        #hardware-status {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hardware-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hardware-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hardware-content {
+            padding: 15px 20px;
+        }
+
+        .sensor-data {
+            margin-bottom: 15px;
+        }
+
+        .sensor-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #e2e8f0;
+        }
+
+        .sensor-item i {
+            width: 16px;
+            text-align: center;
+            color: #4299e1;
+        }
+
+        .sensor-label {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        #temperature-value, #humidity-value, #pressure-value {
+            font-weight: 600;
+            color: #ffffff;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .device-status {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .device-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .device-status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #f56565;
+        }
+
+        .device-status-indicator.online {
+            background: #48bb78;
+        }
+
+        .device-status-indicator.offline {
+            background: #a0aec0;
+        }
+
+        .device-name {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .device-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hardware-btn {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .hardware-btn:hover {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+            transform: translateY(-1px);
+        }
+
+        .hardware-btn:active {
+            transform: translateY(0);
+        }
+
+        .hardware-btn.speaking {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 101, 101, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 101, 101, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 101, 101, 0); }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="frame">
+        <div id="sidepanel">
+            <div id="profile">
+                <div class="wrap">
+                    <img id="profile-img" src="{{ url_for('static', filename='bot.png') }}" class="online" alt="Profile" />
+                    <div class="user-info">
+                        {% if username %}
+                        <p>{{ username }}</p>
+                        {% if predicted_gender and predicted_gender != 'unknown' %}
+                        <small style="color: #90cdf4; margin-top: 2px; display: block;">
+                            <i class="fas fa-user-circle"></i>
+                            Predicted: {{ predicted_gender.title() }} ({{ gender_confidence }}%)
+                        </small>
+                        {% endif %}
+                        <a href="/user_stats">
+                            <i class="fas fa-chart-bar"></i>
+                            My Stats
+                        </a>
+                        <a href="/relationships" style="margin-top: 3px; display: block;">
+                            <i class="fas fa-sitemap"></i>
+                            Relationships
+                        </a>
+                        <a href="/social_memory" style="margin-top: 3px; display: block;">
+                            <i class="fas fa-brain"></i>
+                            Social Memory
+                        </a>
+                        <a href="/graph_visualization" style="margin-top: 3px; display: block;">
+                            <i class="fas fa-project-diagram"></i>
+                            Graph Visualization
+                        </a>
+
+                        {% else %}
+                        <p>Welcome!</p>
+                        <small>Please log in</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div id="contacts">
+                <ul>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <img src="{{ url_for('static', filename='bot.png') }}" alt="AI Assistant" />
+                            <div class="meta">
+                                <p class="name">OMNI Agent</p>
+                                <p class="preview">Your Intelligent Companion</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Hardware Status Section -->
+            <div id="hardware-status">
+                <div class="hardware-header">
+                    <h3><i class="fas fa-microchip"></i> Hardware Status</h3>
+                </div>
+                <div class="hardware-content">
+                    <div class="sensor-data">
+                        <div class="sensor-item">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span class="sensor-label">Temperature:</span>
+                            <span id="temperature-value">--°C</span>
+                        </div>
+                        <div class="sensor-item">
+                            <i class="fas fa-tint"></i>
+                            <span class="sensor-label">Humidity:</span>
+                            <span id="humidity-value">--%</span>
+                        </div>
+                        <div class="sensor-item">
+                            <i class="fas fa-eye"></i>
+                            <span class="sensor-label">Pressure:</span>
+                            <span id="pressure-value">-- hPa</span>
+                        </div>
+                    </div>
+                    <div class="device-status">
+                        <div class="device-item">
+                            <span class="device-status-indicator offline" id="device-indicator"></span>
+                            <span class="device-name" id="device-name">ESP32 Device</span>
+                        </div>
+                        <div class="device-controls">
+                            <button id="hardware-speak-btn" class="hardware-btn" title="Click to speak - captures your voice and responds through ESP32">
+                                <i class="fas fa-comments"></i> Talk to ESP32
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="bottom-bar">
+                {% if username %}
+                <button id="logout" onclick="window.location.href='/logout'">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+                {% else %}
+                <button id="login" onclick="window.location.href='/login'">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button id="signup" onclick="window.location.href='/signup'">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="contact-profile">
+                <img src="{{ url_for('static', filename='bot.png') }}" alt="AI Assistant" />
+                <p>OMNI - Open Source Multimodal Networked Intelligence Agent</p>
+            </div>
+            
+            <div class="messages">
+                <ul>
+                    {% if session.get('is_returning_user') and session.get('context_loaded') %}
+                    <li class="replies">
+                        <img src="{{ url_for('static', filename='bot.png') }}" alt="AI" />
+                        <p><i class="fas fa-history"></i> Welcome back, {{ username }}! I've loaded our previous conversation context and remember our past discussions. Feel free to continue where we left off!</p>
+                    </li>
+                    {% elif session.get('is_returning_user') and not session.get('context_loaded') %}
+                    <li class="replies">
+                        <img src="{{ url_for('static', filename='bot.png') }}" alt="AI" />
+                        <p><i class="fas fa-exclamation-triangle"></i> Welcome back, {{ username }}! I had some trouble loading our previous context, but I'm ready to chat with you!</p>
+                    </li>
+                    {% else %}
+                    <li class="sent">
+                        <img src="{{ url_for('static', filename='user.png') }}" alt="User" />
+                        <p>Hi, who are you?</p>
+                    </li>
+                    <li class="replies">
+                        <img src="{{ url_for('static', filename='bot.png') }}" alt="AI" />
+                        <p>Hello! I am an OMNI, a chatbot designed to help and assist you with various tasks.</p>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <div class="message-input">
+                <div class="wrap">
+                    <input id="textInput" type="text" name="msg" placeholder="Type your message or click microphone to speak..." />
+                    <button class="mic-btn" id="micBtn" type="button" title="Click to speak">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="submit" type="button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Auto-scroll messages to bottom
+        const messagesContainer = document.querySelector('.messages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Profile image click handler
+        $("#profile-img").click(function() {
+            $("#status-options").toggleClass("active");
+        });
+
+        // Status change handlers
+        $("#status-options ul li").click(function() {
+            $("#profile-img").removeClass();
+            $("#status-options ul li").removeClass("active");
+            $(this).addClass("active");
+
+            const status = $(this).attr("id");
+            if (status === "status-online") {
+                $("#profile-img").addClass("online");
+            } else if (status === "status-away") {
+                $("#profile-img").addClass("away");
+            } else if (status === "status-busy") {
+                $("#profile-img").addClass("busy");
+            } else if (status === "status-offline") {
+                $("#profile-img").addClass("offline");
+            }
+
+            $("#status-options").removeClass("active");
+        });
+
+        // New message function
+        function newMessage(msg) {
+            if (!msg) {
+                msg = $(".message-input input").val();
+            }
+            
+            if (msg.trim() === '') {
+                return;
+            }
+
+            // Add user message
+                            $('<li class="sent"><img src="/images/user.png" alt="User" /><p>' + msg + '</p></li>').appendTo($('.messages ul'));
+            
+            // Clear input
+            $('.message-input input').val('');
+            
+            // Scroll to bottom
+            $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+        }
+
+        // Function to show thinking indicator
+        function showThinkingIndicator() {
+            const thinkingHtml = `
+                <li class="thinking-indicator" id="thinking-indicator">
+                    <img src="/images/bot.png" alt="AI" />
+                    <div class="thinking-bubble">
+                        <i class="fas fa-brain brain-icon"></i>
+                        <span>OMNI is thinking</span>
+                        <div class="thinking-dots">
+                            <div class="thinking-dot"></div>
+                            <div class="thinking-dot"></div>
+                            <div class="thinking-dot"></div>
+                        </div>
+                    </div>
+                </li>
+            `;
+            $('.messages ul').append(thinkingHtml);
+            $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+            
+            // Disable input and change placeholder while thinking
+            $('#textInput').prop('disabled', true).attr('placeholder', 'OMNI is processing your message...');
+            $('.submit').prop('disabled', true);
+            $('.mic-btn').prop('disabled', true);
+        }
+
+        // Function to remove thinking indicator
+        function removeThinkingIndicator() {
+            $('#thinking-indicator').remove();
+            
+            // Re-enable input and restore placeholder
+            $('#textInput').prop('disabled', false).attr('placeholder', 'Type your message or click microphone to speak...');
+            $('.submit').prop('disabled', false);
+            $('.mic-btn').prop('disabled', false);
+            $('#textInput').focus();
+        }
+
+        // Send message on button click
+        $('.submit').click(function() {
+            const rawText = $("#textInput").val().trim();
+            if (rawText === "") return;
+
+            $("#textInput").val("");
+            newMessage(rawText);
+
+            // Show thinking indicator
+            showThinkingIndicator();
+
+            // Get bot response with timeout and better error handling
+            $.ajax({
+                url: "/get",
+                data: {msg: rawText},
+                timeout: 30000, // 30 second timeout
+                method: "GET"
+            })
+                .done(function(data) {
+                    // Remove thinking indicator
+                    removeThinkingIndicator();
+                    
+                    // Store last bot response for hardware speaker
+                    lastBotResponse = data;
+                    
+                    // Add bot response
+                    $('<li class="replies"><img src="/images/bot.png" alt="AI" /><p>' + data + '<button class="speaker-btn" onclick="speakText(\'' + data.replace(/'/g, "\\'") + '\')" title="Click to hear response"><i class="fas fa-volume-up"></i></button></p></li>').appendTo($('.messages ul'));
+                    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+                })
+                .fail(function(xhr, status, error) {
+                    // Remove thinking indicator on error
+                    removeThinkingIndicator();
+                    
+                    let errorMessage = "Sorry, I encountered an error while processing your message.";
+                    if (status === 'timeout') {
+                        errorMessage = "Sorry, the request timed out. Please try again with a shorter message.";
+                    } else if (xhr.status === 500) {
+                        errorMessage = "Sorry, there was a server error. Please try again.";
+                    } else if (xhr.status === 0) {
+                        errorMessage = "Sorry, there was a connection error. Please check your internet connection.";
+                    }
+                    
+                    // Show error message
+                    $('<li class="replies"><img src="/images/bot.png" alt="AI" /><p style="color: #e53e3e;"><i class="fas fa-exclamation-triangle"></i> ' + errorMessage + '</p></li>').appendTo($('.messages ul'));
+                    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+                });
+        });
+
+        // Send message on Enter key
+        $('#textInput').keypress(function(e) {
+            if (e.which == 13) {
+                $('.submit').click();
+            }
+        });
+
+        // Auto-scroll new messages
+        function scrollToBottom() {
+            const messagesContainer = document.querySelector('.messages ul');
+            const scrollContainer = document.querySelector('.messages');
+            
+            if (messagesContainer && scrollContainer) {
+                scrollContainer.scrollTop = scrollContainer.scrollHeight;
+            }
+        }
+
+        // Call scroll function when new messages are added
+        const observer = new MutationObserver(scrollToBottom);
+        const messagesUl = document.querySelector('.messages ul');
+        if (messagesUl) {
+            observer.observe(messagesUl, { childList: true });
+        }
+
+        // =============== SPEECH FUNCTIONALITY ===============
+        
+        // Check for Speech Recognition support
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+        let isRecording = false;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                isRecording = true;
+                $('#micBtn').addClass('recording');
+                $('#micBtn i').removeClass('fa-microphone').addClass('fa-stop');
+                $('#textInput').attr('placeholder', 'Listening... Click microphone to stop');
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                $('#textInput').val(transcript);
+                $('#textInput').focus();
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                $('#micBtn').removeClass('recording');
+                $('#micBtn i').removeClass('fa-stop').addClass('fa-microphone');
+                $('#textInput').attr('placeholder', 'Type your message or click microphone to speak...');
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                isRecording = false;
+                $('#micBtn').removeClass('recording');
+                $('#micBtn i').removeClass('fa-stop').addClass('fa-microphone');
+                $('#textInput').attr('placeholder', 'Speech recognition error. Try again...');
+                
+                setTimeout(function() {
+                    $('#textInput').attr('placeholder', 'Type your message or click microphone to speak...');
+                }, 3000);
+            };
+        }
+
+        // Microphone button click handler
+        $('#micBtn').click(function() {
+            if (!SpeechRecognition) {
+                alert('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+                return;
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+
+        // Text-to-Speech functionality
+        let currentSpeech = null;
+
+        function speakText(text) {
+            // Stop any ongoing speech
+            if (currentSpeech) {
+                speechSynthesis.cancel();
+            }
+
+            // Clean the text (remove HTML entities if any)
+            const cleanText = text.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ');
+            
+            if ('speechSynthesis' in window) {
+                currentSpeech = new SpeechSynthesisUtterance(cleanText);
+                currentSpeech.lang = 'en-US';
+                currentSpeech.rate = 0.9;
+                currentSpeech.pitch = 1;
+                currentSpeech.volume = 0.8;
+
+                // Find speaker button and add speaking class
+                const speakerBtn = event.target.closest('.speaker-btn');
+                if (speakerBtn) {
+                    speakerBtn.classList.add('speaking');
+                }
+
+                currentSpeech.onend = function() {
+                    if (speakerBtn) {
+                        speakerBtn.classList.remove('speaking');
+                    }
+                    currentSpeech = null;
+                };
+
+                currentSpeech.onerror = function() {
+                    if (speakerBtn) {
+                        speakerBtn.classList.remove('speaking');
+                    }
+                    currentSpeech = null;
+                };
+
+                speechSynthesis.speak(currentSpeech);
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+        }
+
+        // Add speaker button to existing bot responses
+        $(document).ready(function() {
+            $('.messages li.replies p').each(function() {
+                const text = $(this).text();
+                if (!$(this).find('.speaker-btn').length) {
+                    $(this).append('<button class="speaker-btn" onclick="speakText(\'' + text.replace(/'/g, "\\'") + '\')" title="Click to hear response"><i class="fas fa-volume-up"></i></button>');
+                }
+            });
+            
+            // Initialize hardware status checking
+            updateHardwareStatus();
+            setInterval(updateHardwareStatus, 5000); // Update every 5 seconds
+        });
+
+        // ==================== HARDWARE FUNCTIONS ====================
+
+        function updateHardwareStatus() {
+            $.ajax({
+                url: "/api/hardware/status",
+                method: "GET",
+                timeout: 5000
+            })
+            .done(function(data) {
+                console.log('Hardware status response:', data); // Debug log
+                
+                if (data.devices && data.devices.length > 0) {
+                    const device = data.devices[0]; // Get first device
+                    console.log('Device found:', device); // Debug log
+                    
+                    // Update device status indicator
+                    const indicator = $('#device-indicator');
+                    const deviceName = $('#device-name');
+                    
+                    if (device.online) {
+                        indicator.removeClass('offline').addClass('online');
+                        deviceName.text('ESP32 Online');
+                    } else {
+                        indicator.removeClass('online').addClass('offline');
+                        deviceName.text('ESP32 Offline');
+                    }
+                    
+                    // Update sensor readings
+                    if (device.temperature !== null && device.temperature !== undefined) {
+                        $('#temperature-value').text(device.temperature.toFixed(1) + '°C');
+                    }
+                    if (device.humidity !== null && device.humidity !== undefined) {
+                        $('#humidity-value').text(device.humidity.toFixed(1) + '%');
+                    }
+                    if (device.pressure !== null && device.pressure !== undefined) {
+                        $('#pressure-value').text(device.pressure.toFixed(0) + ' hPa');
+                    }
+                } else {
+                    // No devices found
+                    console.log('No devices found in response'); // Debug log
+                    $('#device-indicator').removeClass('online').addClass('offline');
+                    $('#device-name').text('No Hardware');
+                    $('#temperature-value').text('--°C');
+                    $('#humidity-value').text('--%');
+                    $('#pressure-value').text('-- hPa');
+                }
+            })
+            .fail(function() {
+                // Error getting hardware status
+                $('#device-indicator').removeClass('online').addClass('offline');
+                $('#device-name').text('Connection Error');
+            });
+        }
+
+        // Global variable to store last bot response
+        let lastBotResponse = '';
+        
+        // Hardware speaker button handler - Click to speak with ESP32 response
+        $('#hardware-speak-btn').click(function() {
+            const btn = $(this);
+            
+            if (btn.hasClass('speaking')) {
+                // Already processing, can't start another
+                return;
+            }
+            
+            // Check if hardware is online
+            if (!$('#device-indicator').hasClass('online')) {
+                alert('ESP32 hardware is not online. Please check your device connection.');
+                return;
+            }
+            
+            // Start the click-to-speak process
+            btn.addClass('speaking');
+            btn.html('<i class="fas fa-microphone"></i> Listening...');
+            
+            // Trigger the complete click-to-speak workflow:
+            // 1. Capture microphone audio
+            // 2. Speech recognition
+            // 3. Process through bot
+            // 4. Send response to ESP32 speaker
+            $.ajax({
+                url: "/api/hardware/speak/ESP32_OMNI_DEVICE",
+                method: "POST",
+                timeout: 30000, // Longer timeout for full process
+                contentType: "application/json"
+            })
+            .done(function(data) {
+                console.log('Hardware click-to-speak completed:', data);
+                
+                // Show the conversation in the web interface
+                if (data.recognized_text) {
+                    // Add user message to chat
+                    $('<li class="sent"><img src="/images/user.png" alt="User" /><p>' + data.recognized_text + ' <small style="color: #90cdf4;">(via ESP32)</small></p></li>').appendTo($('.messages ul'));
+                }
+                
+                if (data.bot_response) {
+                    // Store and display bot response
+                    lastBotResponse = data.bot_response;
+                    $('<li class="replies"><img src="/images/bot.png" alt="AI" /><p>' + data.bot_response + ' <small style="color: #90cdf4;">(playing on ESP32)</small><button class="speaker-btn" onclick="speakText(\'' + data.bot_response.replace(/'/g, "\\'") + '\')" title="Click to hear response"><i class="fas fa-volume-up"></i></button></p></li>').appendTo($('.messages ul'));
+                }
+                
+                // Scroll to bottom
+                $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+                
+                // Reset button
+                btn.removeClass('speaking');
+                btn.html('<i class="fas fa-comments"></i> Talk to ESP32');
+            })
+            .fail(function(xhr, status, error) {
+                console.error('Error in hardware click-to-speak:', error);
+                btn.removeClass('speaking');
+                btn.html('<i class="fas fa-comments"></i> Talk to ESP32');
+                
+                let errorMsg = 'Failed to process speech.';
+                if (status === 'timeout') {
+                    errorMsg = 'Speech processing timed out. Please try again.';
+                } else if (xhr.responseJSON && xhr.responseJSON.error) {
+                    errorMsg = xhr.responseJSON.error;
+                }
+                
+                // Show error in chat
+                $('<li class="replies"><img src="/images/bot.png" alt="AI" /><p style="color: #e53e3e;"><i class="fas fa-exclamation-triangle"></i> ESP32 Error: ' + errorMsg + '</p></li>').appendTo($('.messages ul'));
+                $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 300);
+            });
+        });
+    </script>
+</body>
+</html>

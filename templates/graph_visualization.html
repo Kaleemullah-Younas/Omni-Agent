@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo4j Graph Visualization - OMNI Agent</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-big.png') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- vis.js for graph visualization -->
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header h1 i {
+            color: #4299e1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #4299e1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(66, 153, 225, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls h3 {
+            color: #1a365d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .graph-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        #graph-network {
+            width: 100%;
+            height: 70vh;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f7fafc;
+        }
+
+        .legend {
+            margin-top: 20px;
+            background: rgba(247, 250, 252, 0.8);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .legend h4 {
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #4a5568;
+            font-size: 18px;
+        }
+
+        .loading i {
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .control-buttons {
+                justify-content: center;
+            }
+            
+            #graph-network {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-project-diagram"></i>
+                Neo4j Graph Visualization
+            </h1>
+            <div class="nav-links">
+                <span>Welcome, {{ username }}!</span>
+                <a href="/">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a href="/user_stats">
+                    <i class="fas fa-chart-bar"></i>
+                    Stats
+                </a>
+                <a href="/relationships">
+                    <i class="fas fa-sitemap"></i>
+                    Relationships
+                </a>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h3>
+                <i class="fas fa-cogs"></i>
+                Graph Controls
+            </h3>
+            <div class="control-buttons">
+                <button class="btn btn-primary" onclick="refreshGraph()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh Data
+                </button>
+                <button class="btn btn-secondary" onclick="fitGraph()">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                    Fit to Screen
+                </button>
+                <button class="btn btn-success" onclick="togglePhysics()">
+                    <i class="fas fa-play"></i>
+                    <span id="physics-text">Enable Physics</span>
+                </button>
+                <div class="stats" id="graph-stats">
+                    Loading statistics...
+                </div>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner"></i>
+                Loading graph data...
+            </div>
+            <div id="graph-network" style="display: none;"></div>
+            <div id="error-message" class="error" style="display: none;"></div>
+            
+            <div class="legend">
+                <h4>Node Types</h4>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff6b6b;"></div>
+                        <span>Users</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4ecdc4;"></div>
+                        <span>Persons</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ffe66d;"></div>
+                        <span>Text/Sensory</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #a8e6cf;"></div>
+                        <span>Sentences</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #dcedc1;"></div>
+                        <span>Words</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ffd93d;"></div>
+                        <span>Concepts</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff8b94;"></div>
+                        <span>Memory</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #97c2fc;"></div>
+                        <span>Other</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let network = null;
+        let physicsEnabled = false;
+
+        // Graph configuration options
+        const options = {
+            nodes: {
+                shape: 'dot',
+                size: 20,
+                font: {
+                    size: 12,
+                    color: '#333333'
+                },
+                borderWidth: 2,
+                shadow: true
+            },
+            edges: {
+                width: 2,
+                color: {
+                    color: '#848484',
+                    highlight: '#4299e1'
+                },
+                arrows: {
+                    to: {
+                        enabled: true,
+                        scaleFactor: 1,
+                        type: 'arrow'
+                    }
+                },
+                smooth: {
+                    type: 'continuous'
+                },
+                font: {
+                    size: 10,
+                    color: '#666666',
+                    strokeWidth: 3,
+                    strokeColor: '#ffffff'
+                }
+            },
+            physics: {
+                enabled: false,
+                barnesHut: {
+                    gravitationalConstant: -8000,
+                    centralGravity: 0.3,
+                    springLength: 95,
+                    springConstant: 0.04,
+                    damping: 0.09,
+                    avoidOverlap: 0.1
+                },
+                maxVelocity: 50,
+                minVelocity: 0.1,
+                solver: 'barnesHut',
+                stabilization: {
+                    enabled: true,
+                    iterations: 1000,
+                    updateInterval: 100,
+                    onlyDynamicEdges: false,
+                    fit: true
+                },
+                timestep: 0.35,
+                adaptiveTimestep: true
+            },
+            interaction: {
+                navigationButtons: true,
+                keyboard: true,
+                hover: true,
+                selectConnectedEdges: false
+            },
+            layout: {
+                improvedLayout: true,
+                clusterThreshold: 150,
+                hierarchical: {
+                    enabled: false
+                }
+            }
+        };
+
+        async function loadGraphData() {
+            try {
+                document.getElementById('loading').style.display = 'flex';
+                document.getElementById('graph-network').style.display = 'none';
+                document.getElementById('error-message').style.display = 'none';
+
+                const response = await fetch('/api/graph_data');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Update statistics
+                document.getElementById('graph-stats').textContent = 
+                    `Nodes: ${data.stats.total_nodes} | Edges: ${data.stats.total_edges}`;
+
+                // Create network
+                const container = document.getElementById('graph-network');
+                const graphData = {
+                    nodes: new vis.DataSet(data.nodes),
+                    edges: new vis.DataSet(data.edges)
+                };
+
+                network = new vis.Network(container, graphData, options);
+
+                // Add event listeners
+                network.on("click", function (params) {
+                    if (params.nodes.length > 0) {
+                        const nodeId = params.nodes[0];
+                        const node = data.nodes.find(n => n.id === nodeId);
+                        if (node) {
+                            alert(`Node: ${node.label}\nType: ${node.group}\nInfo: ${node.title}`);
+                        }
+                    }
+                });
+
+                network.on("hoverNode", function (params) {
+                    network.canvas.body.container.style.cursor = 'pointer';
+                });
+
+                network.on("blurNode", function (params) {
+                    network.canvas.body.container.style.cursor = 'default';
+                });
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('graph-network').style.display = 'block';
+
+                // Auto-fit the graph
+                setTimeout(() => {
+                    network.fit();
+                }, 500);
+
+            } catch (error) {
+                console.error('Error loading graph data:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('error-message').textContent = 
+                    `Error loading graph data: ${error.message}`;
+            }
+        }
+
+        function refreshGraph() {
+            loadGraphData();
+        }
+
+        function fitGraph() {
+            if (network) {
+                network.fit();
+            }
+        }
+
+        function togglePhysics() {
+            if (network) {
+                physicsEnabled = !physicsEnabled;
+                network.setOptions({ physics: { enabled: physicsEnabled } });
+                
+                const button = document.getElementById('physics-text');
+                button.textContent = physicsEnabled ? 'Disable Physics' : 'Enable Physics';
+                
+                const icon = button.parentElement.querySelector('i');
+                icon.className = physicsEnabled ? 'fas fa-pause' : 'fas fa-play';
+            }
+        }
+
+        // Load graph when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGraphData();
+        });
+    </script>
+</body>
+</html> 

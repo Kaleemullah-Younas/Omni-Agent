@@ -1,0 +1,185 @@
+<aiml version="2.0">
+
+<!-- User Identity Validation and Name Conflict Detection -->
+
+<!-- Pattern: I AM [NAME] -->
+<category>
+    <pattern>I AM *</pattern>
+    <template>
+        <think>
+            <set name="claimed_name"><star/></set>
+            <set name="actual_name"><get name="username"/></set>
+        </think>
+        <condition name="claimed_name">
+            <li value="<get name='username'/>">
+                Yes, I know you are <get name="username"/>. That's correct!
+            </li>
+            <li>
+                I already know your name is <get name="username"/>. You are saying a lie. Your name is not <star/>.
+            </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Pattern: MY NAME IS [NAME] -->
+<category>
+    <pattern>MY NAME IS *</pattern>
+    <template>
+        <think>
+            <set name="claimed_name"><star/></set>
+            <set name="actual_name"><get name="username"/></set>
+        </think>
+        <condition name="claimed_name">
+            <li value="<get name='username'/>">
+                Yes, I know your name is <get name="username"/>. That's correct!
+            </li>
+            <li>
+                I already know your name is <get name="username"/>. You are saying a lie. Your name is not <star/>.
+            </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Pattern: CALL ME [NAME] -->
+<category>
+    <pattern>CALL ME *</pattern>
+    <template>
+        <think>
+            <set name="claimed_name"><star/></set>
+            <set name="actual_name"><get name="username"/></set>
+        </think>
+        <condition name="claimed_name">
+            <li value="<get name='username'/>">
+                Of course, I'll call you <get name="username"/> as always!
+            </li>
+            <li>
+                I know your real name is <get name="username"/>. I cannot call you <star/> because that's not your name.
+            </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Pattern: I'M [NAME] -->
+<category>
+    <pattern>I M *</pattern>
+    <template>
+        <srai>I AM <star/></srai>
+    </template>
+</category>
+
+<!-- Pattern: WHO AM I -->
+<category>
+    <pattern>WHO AM I</pattern>
+    <template>
+        You are <get name="username"/>. That's your name from your account registration.
+    </template>
+</category>
+
+<!-- Pattern: WHAT IS MY NAME -->
+<category>
+    <pattern>WHAT IS MY NAME</pattern>
+    <template>
+        Your name is <get name="username"/>.
+    </template>
+</category>
+
+<!-- Pattern: DO YOU KNOW MY NAME -->
+<category>
+    <pattern>DO YOU KNOW MY NAME</pattern>
+    <template>
+        Yes, your name is <get name="username"/>.
+    </template>
+</category>
+
+<!-- Pattern: WHAT DO YOU CALL ME -->
+<category>
+    <pattern>WHAT DO YOU CALL ME</pattern>
+    <template>
+        I call you <get name="username"/>, which is your registered name.
+    </template>
+</category>
+
+<!-- Pattern: REMEMBER MY NAME -->
+<category>
+    <pattern>REMEMBER MY NAME</pattern>
+    <template>
+        I already remember your name. Your name is <get name="username"/>.
+    </template>
+</category>
+
+<!-- Pattern: FORGET MY NAME -->
+<category>
+    <pattern>FORGET MY NAME</pattern>
+    <template>
+        I cannot forget your name. Your name is <get name="username"/> and it's stored in your account.
+    </template>
+</category>
+
+<!-- Pattern: CHANGE MY NAME -->
+<category>
+    <pattern>CHANGE MY NAME</pattern>
+    <template>
+        I cannot change your name. Your name is <get name="username"/> as registered in your account. If you want to change it, you need to update your account settings.
+    </template>
+</category>
+
+<!-- Pattern: WHAT S MY NAME -->
+<category>
+    <pattern>WHAT S MY NAME</pattern>
+    <template>
+        Your name is <get name="username"/>.
+    </template>
+</category>
+
+<!-- Pattern: WHATS MY NAME -->
+<category>
+    <pattern>WHATS MY NAME</pattern>
+    <template>
+        Your name is <get name="username"/>.
+    </template>
+</category>
+
+<!-- Pattern: WHO I AM -->
+<category>
+    <pattern>WHO I AM</pattern>
+    <template>
+        You are <get name="username"/>. That's your name from your account registration.
+    </template>
+</category>
+
+<!-- Pattern: MY REAL NAME IS [NAME] -->
+<category>
+    <pattern>MY REAL NAME IS *</pattern>
+    <template>
+        <think>
+            <set name="claimed_name"><star/></set>
+            <set name="actual_name"><get name="username"/></set>
+        </think>
+        <condition name="claimed_name">
+            <li value="<get name='username'/>">
+                Yes, I know your real name is <get name="username"/>. That's correct!
+            </li>
+            <li>
+                Your real name according to your account is <get name="username"/>. You are saying a lie if you claim it's <star/>.
+            </li>
+        </condition>
+    </template>
+</category>
+
+<!-- Pattern: ACTUALLY I AM [NAME] -->
+<category>
+    <pattern>ACTUALLY I AM *</pattern>
+    <template>
+        <srai>I AM <star/></srai>
+    </template>
+</category>
+
+<!-- Pattern: NO I AM [NAME] -->
+<category>
+    <pattern>NO I AM *</pattern>
+    <template>
+        <srai>I AM <star/></srai>
+    </template>
+</category>
+
+</aiml> 

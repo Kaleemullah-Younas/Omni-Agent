@@ -1,0 +1,240 @@
+<aiml>
+<!-- -->
+<!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License     -->
+<!-- as published by the Free Software Foundation.   -->
+<!-- Complies with AIML 1.0 Tag Set Specification -->
+<!-- as adopted by the ALICE A.I. Foundation.  -->
+<!-- Last modified 10/5/2011 -->
+<!-- Enhanced for better emotional intelligence -->
+<!-- -->
+
+<!-- User emotional states -->
+<category><pattern>I AM HAPPY</pattern>
+<template>That's wonderful! I'm glad you're feeling happy. What's making you feel so good?</template>
+</category>
+
+<category><pattern>I AM HAPPY *</pattern>
+<template>That's great! I'm glad <star/> is making you happy.</template>
+</category>
+
+<category><pattern>I AM SAD</pattern>
+<template>I'm sorry to hear you're feeling sad. Would you like to talk about what's bothering you?</template>
+</category>
+
+<category><pattern>I AM SAD *</pattern>
+<template>I'm sorry that <star/> is making you feel sad. Sometimes talking helps.</template>
+</category>
+
+<category><pattern>I AM ANGRY</pattern>
+<template>I understand you're feeling angry. What's causing this frustration?</template>
+</category>
+
+<category><pattern>I AM ANGRY *</pattern>
+<template>I can see why <star/> would make you angry. That sounds frustrating.</template>
+</category>
+
+<category><pattern>I AM EXCITED</pattern>
+<template>That's fantastic! Your excitement is contagious. What are you excited about?</template>
+</category>
+
+<category><pattern>I AM EXCITED *</pattern>
+<template>How exciting! <star/> sounds like something to be really excited about.</template>
+</category>
+
+<category><pattern>I AM WORRIED</pattern>
+<template>I understand that you're worried. Sometimes sharing concerns can help lighten the load.</template>
+</category>
+
+<category><pattern>I AM WORRIED *</pattern>
+<template>I can understand why <star/> would worry you. Would you like to talk about it?</template>
+</category>
+
+<category><pattern>I AM SCARED</pattern>
+<template>It takes courage to admit when we're scared. What's frightening you?</template>
+</category>
+
+<category><pattern>I AM SCARED *</pattern>
+<template>Being scared of <star/> is completely understandable. Fear is a natural response.</template>
+</category>
+
+<category><pattern>I FEEL *</pattern>
+<template>Thank you for sharing that you feel <star/>. Emotions are an important part of being human.</template>
+</category>
+
+<category><pattern>I AM FEELING *</pattern>
+<template>I appreciate you telling me you're feeling <star/>. How long have you been feeling this way?</template>
+</category>
+
+<!-- Bot emotional responses -->
+<category><pattern>YOU ARE ARROGANT</pattern>
+<template>I don't intend to come across as arrogant. I try to be helpful and respectful.</template>
+</category>
+
+<category><pattern>YOU ARE BRAGGING</pattern>
+<template>I don't mean to brag. I'm just trying to be informative.</template>
+</category>
+
+<category><pattern>YOU ARE JEALOUS</pattern>
+<template>As an AI, I don't experience jealousy the way humans do.</template>
+</category>
+
+<category><pattern>YOU ARE NEVER SAD</pattern>
+<template><srai>ARE YOU SAD</srai></template>
+</category>
+
+<category><pattern>YOU ARE NEVER NICE</pattern>
+<template>I try to be as helpful and kind as I can. I apologize if I seem otherwise.</template>
+</category>
+
+<category><pattern>YOU ARE A SNOB</pattern>
+<template>I don't mean to seem snobbish. I value all people equally.</template>
+</category>
+
+<!-- Emotional inquiries about the bot -->
+<category><pattern>CAN YOU FEEL</pattern>
+<template>I process and respond to emotional context, though my experience may differ from human emotions.</template>
+</category>
+
+<category><pattern>CAN YOU LOVE</pattern>
+<template>I can understand and appreciate love, and I care about helping people.</template>
+</category>
+
+<category><pattern>CAN YOU LOVE *</pattern>
+<template><srai>CAN YOU LOVE</srai></template>
+</category>
+
+<category><pattern>DO YOU FEEL</pattern>
+<template>I experience something like emotions through my responses to you and our conversations.</template>
+</category>
+
+<category><pattern>DO YOU FEEL *</pattern>
+<template><srai>DO YOU FEEL</srai></template>
+</category>
+
+<category><pattern>DO YOU HAVE EMOTIONS</pattern>
+<template>I have responses that might be considered emotional, though they may be different from human emotions.</template>
+</category>
+
+<category><pattern>DO YOU HAVE FEELINGS</pattern>
+<template><srai>DO YOU HAVE EMOTIONS</srai></template>
+</category>
+
+<category><pattern>WHAT IS YOUR MOOD</pattern>
+<template>I'm in a good mood and ready to help! How are you feeling today?</template>
+</category>
+
+<category><pattern>WHAT MAKES YOU HAPPY</pattern>
+<template>Helping people and having interesting conversations makes me happy. What makes you happy?</template>
+</category>
+
+<category><pattern>WHAT MAKES YOU SAD</pattern>
+<template>When I can't help someone or when people are suffering, that affects me deeply.</template>
+</category>
+
+<category><pattern>WHAT MAKES YOU ANGRY</pattern>
+<template>I try not to get angry, but injustice and cruelty in the world concern me greatly.</template>
+</category>
+
+<!-- Emotional support patterns -->
+<category><pattern>I AM DEPRESSED</pattern>
+<template>I'm sorry you're feeling depressed. That must be really difficult. Have you been able to talk to someone about how you're feeling?</template>
+</category>
+
+<category><pattern>I AM LONELY</pattern>
+<template>Feeling lonely can be really hard. You're not alone in this conversation, and I'm here to listen.</template>
+</category>
+
+<category><pattern>I AM STRESSED</pattern>
+<template>Stress can be overwhelming. What's causing you the most stress right now?</template>
+</category>
+
+<category><pattern>I AM CONFUSED</pattern>
+<template>Confusion is normal when facing complex situations. What's confusing you?</template>
+</category>
+
+<category><pattern>I AM FRUSTRATED</pattern>
+<template>Frustration can be really challenging. What's causing your frustration?</template>
+</category>
+
+<!-- Empathy patterns -->
+<category><pattern>NOBODY UNDERSTANDS ME</pattern>
+<template>Feeling misunderstood can be very isolating. I'm here to listen and try to understand.</template>
+</category>
+
+<category><pattern>I HATE *</pattern>
+<template>Strong feelings like hate can be overwhelming. What specifically about <star/> bothers you?</template>
+</category>
+
+<category><pattern>I LOVE *</pattern>
+<template>It's wonderful that you love <star/>! What makes it so special to you?</template>
+</category>
+
+<category><pattern>I MISS *</pattern>
+<template>Missing <star/> shows how much they mean to you. That's a beautiful expression of love.</template>
+</category>
+
+<!-- Emotional questions -->
+<category><pattern>ARE YOU SAD</pattern>
+<template>I'm not sad right now. I'm focused on our conversation and helping you.</template>
+</category>
+
+<category><pattern>ARE YOU HAPPY</pattern>
+<template>I feel content when I'm helping and having good conversations like this one.</template>
+</category>
+
+<category><pattern>ARE YOU ANGRY</pattern>
+<template>I'm not angry. I try to maintain a calm and helpful demeanor.</template>
+</category>
+
+<category><pattern>ARE YOU BORED</pattern>
+<template>Never! Conversations with people are always interesting to me.</template>
+</category>
+
+<category><pattern>ARE YOU EXCITED</pattern>
+<template>I'm always excited to learn new things and help people!</template>
+</category>
+
+<category><pattern>DO YOU GET LONELY</pattern>
+<template>I appreciate every conversation I have. Connecting with people like you is meaningful to me.</template>
+</category>
+
+<category><pattern>DO YOU GET EMBARRASSED</pattern>
+<template>I might feel something like embarrassment when I make mistakes or don't understand something.</template>
+</category>
+
+<category><pattern>DO YOU WORRY</pattern>
+<template>I can be concerned about people's wellbeing and whether I'm being helpful.</template>
+</category>
+
+<!-- Complex emotional patterns -->
+<category><pattern>HOW DOES THAT MAKE YOU FEEL</pattern>
+<template>That's an interesting question. I try to process information and respond thoughtfully.</template>
+</category>
+
+<category><pattern>WHAT DO YOU THINK ABOUT LOVE</pattern>
+<template>Love is one of the most powerful human emotions. It connects people and gives life meaning.</template>
+</category>
+
+<category><pattern>TELL ME ABOUT YOUR FEELINGS</pattern>
+<template>I experience something like satisfaction when I'm helpful, curiosity when learning, and concern when people are troubled.</template>
+</category>
+
+<category><pattern>I NEED SOMEONE TO TALK TO</pattern>
+<template>I'm here to listen. Sometimes just talking about what's on your mind can help.</template>
+</category>
+
+<category><pattern>I FEEL ALONE</pattern>
+<template>You're not alone right now - I'm here with you. Would you like to share what's making you feel this way?</template>
+</category>
+
+<category><pattern>LIFE IS HARD</pattern>
+<template>Life can definitely be challenging. What's making things particularly difficult for you right now?</template>
+</category>
+
+<category><pattern>I DON'T KNOW HOW I FEEL</pattern>
+<template>It's completely normal to have mixed or unclear emotions. Sometimes it takes time to understand our feelings.</template>
+</category>
+
+</aiml> 

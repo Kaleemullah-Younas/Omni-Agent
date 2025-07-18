@@ -1,0 +1,174 @@
+<aiml version="2.0">
+
+<!-- Context-aware name responses -->
+<category>
+    <pattern>WHAT IS MY NAME</pattern>
+    <template>
+        <condition name="name">
+            <li value="unknown">I don't know your name yet. Could you please tell me?</li>
+            <li value="">I don't know your name yet. Could you please tell me?</li>
+            <li>Your name is <get name="name"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT'S MY NAME</pattern>
+    <template>
+        <srai>WHAT IS MY NAME</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>DO YOU KNOW MY NAME</pattern>
+    <template>
+        <condition name="name">
+            <li value="unknown">No, I don't know your name yet. What should I call you?</li>
+            <li value="">No, I don't know your name yet. What should I call you?</li>
+            <li>Yes, your name is <get name="name"/>!</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>TELL ME MY NAME</pattern>
+    <template>
+        <srai>WHAT IS MY NAME</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>WHO AM I</pattern>
+    <template>
+        <condition name="name">
+            <li value="unknown">You haven't told me your name yet. Who are you?</li>
+            <li value="">You haven't told me your name yet. Who are you?</li>
+            <li>You are <get name="name"/>!</li>
+        </condition>
+    </template>
+</category>
+
+<!-- Context-aware age responses -->
+<category>
+    <pattern>HOW OLD AM I</pattern>
+    <template>
+        <condition name="age">
+            <li value="unknown">I don't know your age yet. How old are you?</li>
+            <li value="">I don't know your age yet. How old are you?</li>
+            <li>You are <get name="age"/> years old.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT IS MY AGE</pattern>
+    <template>
+        <srai>HOW OLD AM I</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>DO YOU KNOW MY AGE</pattern>
+    <template>
+        <condition name="age">
+            <li value="unknown">No, I don't know your age. Could you tell me?</li>
+            <li value="">No, I don't know your age. Could you tell me?</li>
+            <li>Yes, you are <get name="age"/> years old!</li>
+        </condition>
+    </template>
+</category>
+
+<!-- Context-aware family responses -->
+<category>
+    <pattern>WHO IS MY FATHER</pattern>
+    <template>
+        <condition name="father">
+            <li value="unknown">I don't know who your father is. Could you tell me?</li>
+            <li value="">I don't know who your father is. Could you tell me?</li>
+            <li><get name="father"/> is your father.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHO IS MY MOTHER</pattern>
+    <template>
+        <condition name="mother">
+            <li value="unknown">I don't know who your mother is. Could you tell me?</li>
+            <li value="">I don't know who your mother is. Could you tell me?</li>
+            <li><get name="mother"/> is your mother.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT IS MY FATHER NAME</pattern>
+    <template>
+        <srai>WHO IS MY FATHER</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT IS MY MOTHER NAME</pattern>
+    <template>
+        <srai>WHO IS MY MOTHER</srai>
+    </template>
+</category>
+
+<!-- Context greeting for returning users -->
+<category>
+    <pattern>HI</pattern>
+    <template>
+        <condition name="returning_user">
+            <li value="true">
+                <condition name="name">
+                    <li value="unknown">Hello again! Welcome back!</li>
+                    <li value="">Hello again! Welcome back!</li>
+                    <li>Hello <get name="name"/>! Great to see you again!</li>
+                </condition>
+            </li>
+            <li>Hi there! How can I help you today?</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>HELLO</pattern>
+    <template>
+        <srai>HI</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>HEY</pattern>
+    <template>
+        <srai>HI</srai>
+    </template>
+</category>
+
+<!-- Remember user information -->
+<category>
+    <pattern>MY NAME IS *</pattern>
+    <template>
+        <think><set name="name"><star/></set></think>
+        <condition name="returning_user">
+            <li value="true">Nice to be reminded, <get name="name"/>! I should have remembered that from our previous conversations.</li>
+            <li>Nice to meet you, <get name="name"/>! I'll remember that your name is <get name="name"/>.</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>I AM * YEARS OLD</pattern>
+    <template>
+        <think><set name="age"><star/></set></think>
+        <condition name="returning_user">
+            <li value="true">Thanks for reminding me that you're <get name="age"/> years old, <get name="name"/>!</li>
+            <li>Thanks for telling me! I'll remember that you're <get name="age"/> years old.</li>
+        </condition>
+    </template>
+</category>
+
+<!-- Removed conflicting father/mother patterns - these are better handled in comprehensive_relationships.aiml -->
+
+</aiml>

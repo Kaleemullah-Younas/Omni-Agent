@@ -1,0 +1,71 @@
+<aiml version="2.0">
+
+<!-- Global Relationship Query Patterns -->
+
+<!-- WHO IS MY [ANY RELATIONSHIP] -->
+<category>
+    <pattern>WHO IS MY *</pattern>
+    <template>
+        <think><set name="query_relationship"><star/></set></think>
+        <srai>VALIDATE AND GET RELATIONSHIP <star/></srai>
+    </template>
+</category>
+
+<!-- WHAT IS THE NAME OF MY [ANY RELATIONSHIP] -->
+<category>
+    <pattern>WHAT IS THE NAME OF MY *</pattern>
+    <template>
+        <think><set name="query_relationship"><star/></set></think>
+        <srai>VALIDATE AND GET RELATIONSHIP <star/></srai>
+    </template>
+</category>
+
+<!-- WHAT IS MY [RELATIONSHIP] NAME -->
+<category>
+    <pattern>WHAT IS MY * NAME</pattern>
+    <template>
+        <think><set name="query_relationship"><star/></set></think>
+        <srai>VALIDATE AND GET RELATIONSHIP <star/></srai>
+    </template>
+</category>
+
+<!-- DO YOU KNOW MY [ANY RELATIONSHIP] -->
+<category>
+    <pattern>DO YOU KNOW MY *</pattern>
+    <template>
+        <think><set name="query_relationship"><star/></set></think>
+        <srai>VALIDATE AND GET RELATIONSHIP <star/></srai>
+    </template>
+</category>
+
+<!-- TELL ME ABOUT MY [ANY RELATIONSHIP] -->
+<category>
+    <pattern>TELL ME ABOUT MY *</pattern>
+    <template>
+        <think><set name="query_relationship"><star/></set></think>
+        <srai>VALIDATE AND GET RELATIONSHIP <star/></srai>
+    </template>
+</category>
+
+<!-- Validate relationship and get from social memory -->
+<category>
+    <pattern>VALIDATE AND GET RELATIONSHIP *</pattern>
+    <template>
+        <think>
+            <set name="relationship_to_check"><star/></set>
+            <set name="relationship_valid">CHECKING</set>
+        </think>
+        <!-- This will be handled by Python backend to validate against CSV and query database -->
+        <condition name="relationship_to_check">
+            <li value="">Please specify a relationship.</li>
+            <li>
+                <condition name="<get name='relationship_to_check'/>_name">
+                    <li value="">I don't know who your <get name="relationship_to_check"/> is. You haven't told me about your <get name="relationship_to_check"/> yet.</li>
+                    <li>Your <get name="relationship_to_check"/>'s name is <get name="<get name='relationship_to_check'/>_name"/>.</li>
+                </condition>
+            </li>
+        </condition>
+    </template>
+</category>
+
+</aiml>

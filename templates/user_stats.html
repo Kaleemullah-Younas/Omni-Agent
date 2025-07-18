@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Statistics - OMNI</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-big.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-big.png') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .stats-header h1 {
+            color: #1a365d;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-header .username {
+            color: #4299e1;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h3 {
+            color: #1a365d;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-card h3 i {
+            margin-right: 10px;
+            color: #4299e1;
+        }
+
+        .chat-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4299e1;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #4299e1, #667eea);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .ip-history {
+            margin-top: 15px;
+        }
+
+        .ip-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .ip-item:last-child {
+            border-bottom: none;
+        }
+
+        .ip-address {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .ip-location {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .episode-list {
+            margin-top: 15px;
+        }
+
+        .episode-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4299e1;
+        }
+
+        .episode-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .episode-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #4299e1, #667eea);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #3182ce, #5a67d8);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .chat-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stats-container">
+        <div class="stats-header">
+            <h1>📊 User Statistics</h1>
+            <div class="username">{{ username }}</div>
+        </div>
+
+        <div class="stats-grid">
+            <!-- Chat Summary Card -->
+            <div class="stat-card">
+                <h3><i>💬</i> Chat Summary</h3>
+                
+                <div class="chat-metrics">
+                    <div class="metric">
+                        <div class="metric-value">{{ chat_summary.total_interactions or 0 }}</div>
+                        <div class="metric-label">Total Interactions</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">{{ chat_summary.sentiments_used|length or 0 }}</div>
+                        <div class="metric-label">Sentiments Used</div>
+                    </div>
+                </div>
+
+                {% if chat_summary and chat_summary.sentiments_used %}
+                    <div>
+                        <strong>Sentiments:</strong>
+                        <div class="tag-list">
+                            {% for sentiment in chat_summary.sentiments_used %}
+                                <span class="tag">{{ sentiment }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if chat_summary and chat_summary.emotions_detected %}
+                    <div style="margin-top: 15px;">
+                        <strong>Emotions:</strong>
+                        <div class="tag-list">
+                            {% for emotion in chat_summary.emotions_detected %}
+                                <span class="tag">{{ emotion }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- IP Location History Card -->
+            <div class="stat-card">
+                <h3><i>🌍</i> Recent Locations</h3>
+                
+                {% if recent_ip_locations %}
+                    <div class="ip-history">
+                        {% for ip in recent_ip_locations %}
+                            <div class="ip-item">
+                                <span class="ip-address">{{ ip.ip_address }}</span>
+                                <span class="ip-location">{{ ip.city }}, {{ ip.country }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">No location history available</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Recent Episodes Section -->
+        <div class="stat-card">
+            <h3><i>📝</i> Recent Sessions</h3>
+            
+            {% if recent_episodes %}
+                <div class="episode-list">
+                    {% for episode in recent_episodes %}
+                        <div class="episode-item">
+                            <div class="episode-text">
+                                <strong>Session:</strong> {{ episode.session_key }}<br>
+                                <strong>Interactions:</strong> {{ episode.interaction_count or 0 }}<br>
+                                <strong>Status:</strong> {{ episode.status|capitalize }}<br>
+                                {% if episode.interactions %}
+                                    <strong>Sample interactions:</strong><br>
+                                    {% for interaction in episode.interactions[:3] %}
+                                        • {{ interaction[:100] }}{% if interaction|length > 100 %}...{% endif %}<br>
+                                    {% endfor %}
+                                    {% if episode.interactions|length > 3 %}
+                                        <em>... and {{ episode.interactions|length - 3 }} more interactions</em>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="episode-meta">
+                                <span><strong>Duration:</strong> 
+                                    {% if episode.episode_start and episode.episode_end %}
+                                        {{ "%.1f"|format((episode.episode_end - episode.episode_start) / 60) }} minutes
+                                    {% else %}
+                                        Unknown
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">No recent episodes available</div>
+            {% endif %}
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/" class="btn-custom">🏠 Back to Chat</a>
+            <a href="/logout" class="btn-custom">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

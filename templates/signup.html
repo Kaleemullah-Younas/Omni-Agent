@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - OMNI</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-big.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-big.png') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(66, 153, 225, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .signup-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+        }
+
+        .signup-header .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        .signup-header .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .signup-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .signup-header p {
+            color: #718096;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .signup-form {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            color: #2d3748;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #48bb78;
+            box-shadow: 0 0 0 4px rgba(72, 187, 120, 0.1);
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -8px;
+            left: 12px;
+            font-size: 12px;
+            color: #48bb78;
+            background: #ffffff;
+            padding: 0 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 12px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            flex: 1;
+            background: #e2e8f0;
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .strength-bar.weak { background: #f56565; }
+        .strength-bar.medium { background: #ed8936; }
+        .strength-bar.strong { background: #48bb78; }
+
+        .password-requirements {
+            margin-top: 8px;
+            font-size: 12px;
+            text-align: left;
+            color: #718096;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .requirement.met {
+            color: #48bb78;
+        }
+
+        .requirement i {
+            width: 12px;
+        }
+
+        .show-password-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .show-password-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #48bb78;
+            cursor: pointer;
+        }
+
+        .show-password-wrapper label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.3);
+        }
+
+        .signup-button:hover {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(72, 187, 120, 0.4);
+        }
+
+        .signup-button:active {
+            transform: translateY(0);
+        }
+
+        .signup-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .login-link a {
+            color: #48bb78;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: #38a169;
+        }
+
+        /* Message Styles */
+        .message {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            color: #c53030;
+            border: 1px solid #fc8181;
+        }
+
+        .message.notification {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #2f855a;
+            border: 1px solid #68d391;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 40px 24px;
+                margin: 20px;
+                border-radius: 20px;
+            }
+
+            .signup-header h1 {
+                font-size: 24px;
+            }
+
+            .signup-header p {
+                font-size: 14px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Focus visible for accessibility */
+        *:focus-visible {
+            outline: 2px solid #48bb78;
+            outline-offset: 2px;
+        }
+
+        /* Password match indicator */
+        .password-match {
+            font-size: 12px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .password-match.match {
+            background: rgba(72, 187, 120, 0.1);
+            color: #2f855a;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+        }
+
+        .password-match.no-match {
+            background: rgba(245, 101, 101, 0.1);
+            color: #c53030;
+            border: 1px solid rgba(245, 101, 101, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="AI Assistant">
+            </div>
+            <h1>Join OMNI Agent</h1>
+            <p>Create your account to get started</p>
+        </div>
+
+        <!-- Messages -->
+        {% if request.args.get('error') == 'invalid_email' %}
+        <div class="message error">
+            <i class="fas fa-exclamation-triangle"></i>
+            Invalid email format. Please enter a valid email address.
+        </div>
+        {% elif request.args.get('error') == 'email_exists' %}
+        <div class="message error">
+            <i class="fas fa-user-times"></i>
+            An account with this email already exists. Please sign in instead.
+        </div>
+        {% elif request.args.get('error') == 'password_mismatch' %}
+        <div class="message error">
+            <i class="fas fa-exclamation-triangle"></i>
+            Passwords do not match. Please try again.
+        </div>
+        {% elif request.args.get('success') == 'signup' %}
+        <div class="message notification">
+            <i class="fas fa-check-circle"></i>
+            Account created successfully! Redirecting to login...
+        </div>
+        {% endif %}
+
+        <form class="signup-form" action="/signup" method="POST">
+            <div class="form-group">
+                <input type="text" name="name" placeholder=" " required>
+                <label for="name">Full Name</label>
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" placeholder=" " required>
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="password" id="signup-password" name="password" placeholder=" " required>
+                    <label for="password">Password</label>
+                    <div class="password-strength" id="password-strength" style="display: none;">
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                        <div class="strength-bar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder=" " required>
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="password-match" id="password-match" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="password-requirements" id="password-requirements" style="display: none;">
+                <div class="requirement" id="length-req">
+                    <i class="fas fa-times"></i>
+                    At least 8 characters
+                </div>
+                <div class="requirement" id="uppercase-req">
+                    <i class="fas fa-times"></i>
+                    One uppercase letter
+                </div>
+                <div class="requirement" id="lowercase-req">
+                    <i class="fas fa-times"></i>
+                    One lowercase letter
+                </div>
+                <div class="requirement" id="number-req">
+                    <i class="fas fa-times"></i>
+                    One number
+                </div>
+            </div>
+
+            <div class="show-password-wrapper">
+                <input type="checkbox" id="show-password-signup" onclick="togglePasswordSignup()">
+                <label for="show-password-signup">Show Passwords</label>
+            </div>
+
+            <button type="submit" class="signup-button" id="signup-btn">
+                <i class="fas fa-user-plus"></i>
+                Create Account
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="/login">Sign in here</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordSignup() {
+            const passwordField = document.getElementById("signup-password");
+            const confirmPasswordField = document.getElementById("confirm-password");
+            const checkbox = document.getElementById("show-password-signup");
+            
+            if (checkbox.checked) {
+                passwordField.type = "text";
+                confirmPasswordField.type = "text";
+            } else {
+                passwordField.type = "password";
+                confirmPasswordField.type = "password";
+            }
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            const requirements = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /\d/.test(password)
+            };
+
+            // Update requirement indicators
+            document.getElementById('length-req').classList.toggle('met', requirements.length);
+            document.getElementById('uppercase-req').classList.toggle('met', requirements.uppercase);
+            document.getElementById('lowercase-req').classList.toggle('met', requirements.lowercase);
+            document.getElementById('number-req').classList.toggle('met', requirements.number);
+
+            // Update icons
+            Object.keys(requirements).forEach(req => {
+                const element = document.getElementById(`${req}-req`);
+                const icon = element.querySelector('i');
+                icon.className = requirements[req] ? 'fas fa-check' : 'fas fa-times';
+            });
+
+            // Calculate strength
+            const metRequirements = Object.values(requirements).filter(Boolean).length;
+            const strengthBars = document.querySelectorAll('.strength-bar');
+            
+            strengthBars.forEach((bar, index) => {
+                bar.className = 'strength-bar';
+                if (index < metRequirements) {
+                    if (metRequirements <= 2) bar.classList.add('weak');
+                    else if (metRequirements === 3) bar.classList.add('medium');
+                    else bar.classList.add('strong');
+                }
+            });
+
+            return metRequirements === 4;
+        }
+
+        // Password matching checker
+        function checkPasswordMatch() {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const matchDiv = document.getElementById('password-match');
+
+            if (confirmPassword.length > 0) {
+                matchDiv.style.display = 'block';
+                if (password === confirmPassword) {
+                    matchDiv.className = 'password-match match';
+                    matchDiv.innerHTML = '<i class="fas fa-check"></i> Passwords match';
+                } else {
+                    matchDiv.className = 'password-match no-match';
+                    matchDiv.innerHTML = '<i class="fas fa-times"></i> Passwords do not match';
+                }
+            } else {
+                matchDiv.style.display = 'none';
+            }
+
+            return password === confirmPassword;
+        }
+
+        // Event listeners
+        document.getElementById('signup-password').addEventListener('input', function() {
+            const password = this.value;
+            
+            if (password.length > 0) {
+                document.getElementById('password-strength').style.display = 'flex';
+                document.getElementById('password-requirements').style.display = 'block';
+            } else {
+                document.getElementById('password-strength').style.display = 'none';
+                document.getElementById('password-requirements').style.display = 'none';
+            }
+
+            checkPasswordStrength(password);
+            checkPasswordMatch();
+        });
+
+        document.getElementById('confirm-password').addEventListener('input', checkPasswordMatch);
+
+        // Form validation
+        document.querySelector('.signup-form').addEventListener('submit', function(e) {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (!checkPasswordStrength(password)) {
+                e.preventDefault();
+                alert('Please ensure your password meets all requirements.');
+                return;
+            }
+
+            if (!checkPasswordMatch()) {
+                e.preventDefault();
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Add loading state
+            const button = document.getElementById('signup-btn');
+            button.classList.add('loading');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+        });
+
+        // Auto-redirect on success
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'signup') {
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 3000);
+            }
+        });
+
+        // Enhanced form validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.validity.valid && this.value) {
+                    this.style.borderColor = '#48bb78';
+                } else if (this.value && !this.validity.valid) {
+                    this.style.borderColor = '#f56565';
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#48bb78';
+            });
+        });
+    </script>
+</body>
+</html>
