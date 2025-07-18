@@ -215,4 +215,4 @@ python main.py
 
 ## Contact
 
-For support, open an issue or contact the maintainer. 
+For support, open an issue or contact the [maintainer](mailto:kaleemullahyouus123@gmail.com). 
